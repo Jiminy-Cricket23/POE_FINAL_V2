@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -139,6 +140,40 @@ namespace POE_FINAL
         {
             lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
             lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
+            tBumpLabels.Start();// this adds the animation every time the labels need to be set
+        }
+
+        // if the text reaches it's max it must go back down
+        private static bool bBump = true;
+        /// <summary>
+        /// Every time this ticks move the text slightly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tBumpLabels_Tick(object sender, EventArgs e)
+        {
+            float fSize = lblGoalAttempts.Font.Size;
+
+            if (bBump)
+                fSize += 0.25F;
+            else
+                fSize -= 0.25F;
+
+            if (fSize == 18F)
+                bBump = false;
+
+            if (fSize == 15.75)
+            {
+                bBump = true;
+                tBumpLabels.Stop();
+            }
+               
+            
+            Font fChanger = new Font("Segoe UI", fSize, FontStyle.Bold);
+            lblGoalAttempts.Font = fChanger;
+            lblHeading.Font = fChanger;
+            lblPoints.Font = fChanger;
+            lblPointsGoal.Font = fChanger;
         }
     }
 }

@@ -33,7 +33,7 @@
             this.btnSortingGame = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblPointsGoal = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPoints = new System.Windows.Forms.Label();
             this.lblGoalAttempts = new System.Windows.Forms.Label();
             this.lblHeading = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@
             // 
             this.pnlHeader.BackColor = System.Drawing.SystemColors.Highlight;
             this.pnlHeader.Controls.Add(this.lblPointsGoal);
-            this.pnlHeader.Controls.Add(this.label2);
+            this.pnlHeader.Controls.Add(this.lblPoints);
             this.pnlHeader.Controls.Add(this.lblGoalAttempts);
             this.pnlHeader.Controls.Add(this.lblHeading);
             this.pnlHeader.Controls.Add(this.btnClose);
@@ -79,10 +79,10 @@
             resources.ApplyResources(this.lblPointsGoal, "lblPointsGoal");
             this.lblPointsGoal.Name = "lblPointsGoal";
             // 
-            // label2
+            // lblPoints
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lblPoints, "lblPoints");
+            this.lblPoints.Name = "lblPoints";
             // 
             // lblGoalAttempts
             // 
@@ -171,6 +171,11 @@
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
+            // tBumpLabels
+            // 
+            this.tBumpLabels.Interval = 10;
+            this.tBumpLabels.Tick += new System.EventHandler(this.tBumpLabels_Tick);
+            // 
             // frmHome
             // 
             resources.ApplyResources(this, "$this");
@@ -212,7 +217,7 @@
         private System.Windows.Forms.Button btnCallNums;
         private System.Windows.Forms.TextBox tbPointsGoal;
         private System.Windows.Forms.Label lblPointsGoal;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPoints;
         private System.Windows.Forms.Label lblGoalAttempts;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label label1;
