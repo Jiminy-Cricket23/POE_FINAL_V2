@@ -66,8 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Data Management\dbManagement.cs" />
-    <Compile Include="Classes\Data Management\SQLStatementBuilder.cs" />
     <Compile Include="Classes\Task 1 Classes\Booked.cs" />
     <Compile Include="Classes\Task 1 Classes\Messages.cs" />
     <Compile Include="frmHome.cs">

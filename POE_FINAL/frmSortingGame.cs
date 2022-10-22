@@ -41,6 +41,11 @@ namespace POE_FINAL
         private int len = 1100; //  this is for the animation of the results pannel
         private int Attempts = 1; // this is used to keep track of attempts on a single one
 
+        /// <summary>
+        /// This starts the game and sets everything into motion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
@@ -60,10 +65,7 @@ namespace POE_FINAL
             lvBooks.Alignment = ListViewAlignment.Top;
             lvBooks.TileSize = new System.Drawing.Size(220, 30);
             btnDone.Enabled = true;
-            sw.Start();
-
-
-            
+            sw.Start(); 
         }
 
         /// <summary>
@@ -130,11 +132,21 @@ namespace POE_FINAL
 
         }
 
+        /// <summary>
+        /// This is the close button for the application on this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             ms.ExitMessage();
         }
 
+        /// <summary>
+        /// When the user wants to confirm if they have the right order they click this button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDone_Click(object sender, EventArgs e)
         {
             btnDone.Enabled = false;
@@ -178,7 +190,7 @@ namespace POE_FINAL
             }
             if (iWrong == 1 || !bFlag)
             {
-                MessageBox.Show("You have put them in right order");
+                MessageBox.Show("You have put them in right order"); // TODO Success Message
                 lvBooks.Clear();
                 lBooks.Clear();
                 btnStart.Enabled = true;
@@ -194,7 +206,7 @@ namespace POE_FINAL
             else
             {
                 btnDone.Enabled = true;
-                MessageBox.Show("You have put them in wrong order, "+ iWrong + " items are wrong");
+                MessageBox.Show("You have put them in wrong order, "+ iWrong + " items are wrong"); //TODO: Change this to be an error message
                 Attempts++;
             }
                 
@@ -261,13 +273,8 @@ namespace POE_FINAL
             lblAttempts.Text = Attempts.ToString()+" Attempts";
             lblPointsEarnt.Text = pointsEarnt.ToString()+" Points";
 
-            frmHome.acheivedPoints += pointsEarnt;
-            lblPointsGoal.Text = frmHome.acheivedPoints.ToString() + "/" + frmHome.goalPoints.ToString();
-            lblGoalAttempts.Text = frmHome.acheivedAttempts.ToString() + "/" + frmHome.goalAttempts.ToString();
-
-            //MessageBox.Show(rank);
-
-
+            Program.acheivedPoints += pointsEarnt;
+            SetLabels();
         }
 
         /// <summary>
@@ -319,6 +326,7 @@ namespace POE_FINAL
                 // do nothing
             }// end of catch
         }
+
         /// <summary>
         /// When the lvBooks is clicked make the arrow and label visible and then moves it
         /// it is done here because it is happens when it is clicked
@@ -344,6 +352,11 @@ namespace POE_FINAL
            
         }
 
+        /// <summary>
+        /// This creates the animation of the pannel sliding accross the screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tAnimation_Tick(object sender, EventArgs e)
         {
             //int len = starting point
@@ -357,27 +370,51 @@ namespace POE_FINAL
                 tAnimation.Stop();
         }
 
+        /// <summary>
+        /// When the form loads a few things need to be set as a default
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmSortingGame_Load(object sender, EventArgs e)
         {
             pnlResults.Location = new Point(len, 80);
-            lblPointsGoal.Text = frmHome.acheivedPoints.ToString() + "/" + frmHome.goalPoints.ToString();
-            lblGoalAttempts.Text = frmHome.acheivedAttempts.ToString() + "/" + frmHome.goalAttempts.ToString();
+            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
+            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
         }
 
+        /// <summary>
+        /// This button is on the pannel after the results have been displayed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFinishReport_Click(object sender, EventArgs e)
         {
             //Hiding the form
             frmHome frm = new frmHome();
-            frmHome.acheivedAttempts++;
+            Program.acheivedAttempts++;
             frm.Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// This button returns to the main home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             frmHome frm = new frmHome();
             frm.Show();
             this.Hide();
+        }
+
+        /// <summary>
+        /// this sets all the labels to the goals and what was acheived in this form
+        /// </summary>
+        private void SetLabels()
+        {
+            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
+            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
         }
     }
 }
