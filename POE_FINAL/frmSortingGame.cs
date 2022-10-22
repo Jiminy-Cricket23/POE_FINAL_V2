@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace POE_FINAL
 {
     public partial class frmSortingGame : Form
     {
+
         public frmSortingGame()
         {
             InitializeComponent();
@@ -82,14 +84,11 @@ namespace POE_FINAL
             while (i <= j)
             {
                 while (lBooks[i].ReferenceNumber < pivot)
-                {
                     i++;
-                }
 
                 while (lBooks[j].ReferenceNumber > pivot)
-                {
                     j--;
-                }
+
                 if (i <= j)
                 {
                     var temp = lBooks[i];
@@ -120,14 +119,11 @@ namespace POE_FINAL
 
                 //Segoe UI, 21.75pt, style=BoldbtnStart.Font
                 Font ftItem = new Font("Segoe UI", 15);
-
                 TextRenderer.DrawText(e.Graphics, e.Item.Text, ftItem, e.Bounds, Color.Black, Color.Empty, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ms.ErrorMessage(ex.ToString());
             }
 
         }
@@ -190,7 +186,7 @@ namespace POE_FINAL
             }
             if (iWrong == 1 || !bFlag)
             {
-                MessageBox.Show("You have put them in right order"); // TODO Success Message
+                ms.SuccessMessage("You have put them in right order");
                 lvBooks.Clear();
                 lBooks.Clear();
                 btnStart.Enabled = true;
@@ -206,7 +202,7 @@ namespace POE_FINAL
             else
             {
                 btnDone.Enabled = true;
-                MessageBox.Show("You have put them in wrong order, "+ iWrong + " items are wrong"); //TODO: Change this to be an error message
+                ms.ErrorMessage("You have put them in wrong order, "+ iWrong + " items are wrong");
                 Attempts++;
             }
                 
@@ -274,7 +270,7 @@ namespace POE_FINAL
             lblPointsEarnt.Text = pointsEarnt.ToString()+" Points";
 
             Program.acheivedPoints += pointsEarnt;
-            SetLabels();
+            //SetLabels(); this looks tacky here
         }
 
         /// <summary>
@@ -321,8 +317,9 @@ namespace POE_FINAL
                 // Reseting what item is selected https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listviewitem.selected?view=windowsdesktop-6.0
                 lvBooks.Items[iSelected + iMove].Selected = true;
             }
-            catch
+            catch (Exception ex)
             {
+                ms.ErrorMessage(ex.ToString());
                 // do nothing
             }// end of catch
         }
@@ -406,15 +403,6 @@ namespace POE_FINAL
             frmHome frm = new frmHome();
             frm.Show();
             this.Hide();
-        }
-
-        /// <summary>
-        /// this sets all the labels to the goals and what was acheived in this form
-        /// </summary>
-        private void SetLabels()
-        {
-            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
-            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
         }
     }
 }

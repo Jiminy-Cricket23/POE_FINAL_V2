@@ -130,13 +130,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnSortingGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 466</value>
-  </data>
-  <data name="btnSortingGame.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>76, 379</value>
   </data>
   <data name="btnSortingGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 59</value>
+    <value>200, 48</value>
   </data>
   <data name="btnSortingGame.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -166,13 +163,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPointsGoal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>559, 48</value>
-  </data>
-  <data name="lblPointsGoal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>419, 39</value>
   </data>
   <data name="lblPointsGoal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 37</value>
+    <value>94, 30</value>
   </data>
   <data name="lblPointsGoal.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -202,13 +196,10 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>376, 48</value>
-  </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>282, 39</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 37</value>
+    <value>131, 30</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -238,13 +229,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblGoalAttempts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 11</value>
-  </data>
-  <data name="lblGoalAttempts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>449, 9</value>
   </data>
   <data name="lblGoalAttempts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 37</value>
+    <value>70, 30</value>
   </data>
   <data name="lblGoalAttempts.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -274,13 +262,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>376, 11</value>
-  </data>
-  <data name="lblHeading.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>282, 9</value>
   </data>
   <data name="lblHeading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 37</value>
+    <value>161, 30</value>
   </data>
   <data name="lblHeading.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -310,13 +295,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1024, 0</value>
-  </data>
-  <data name="btnClose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>768, 0</value>
   </data>
   <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 41</value>
+    <value>33, 33</value>
   </data>
   <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -340,10 +322,10 @@
     <value>0, 0</value>
   </data>
   <data name="pnlHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="pnlHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 100</value>
+    <value>801, 81</value>
   </data>
   <data name="pnlHeader.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -364,13 +346,10 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>700, 213</value>
-  </data>
-  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>525, 173</value>
   </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 246</value>
+    <value>200, 200</value>
   </data>
   <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -394,13 +373,10 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 213</value>
-  </data>
-  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>303, 173</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 246</value>
+    <value>200, 200</value>
   </data>
   <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -424,13 +400,10 @@
     <value>NoControl</value>
   </data>
   <data name="pbSorting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 213</value>
-  </data>
-  <data name="pbSorting.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>76, 173</value>
   </data>
   <data name="pbSorting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 246</value>
+    <value>200, 200</value>
   </data>
   <data name="pbSorting.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -460,13 +433,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnFindArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 466</value>
-  </data>
-  <data name="btnFindArea.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>303, 379</value>
   </data>
   <data name="btnFindArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 59</value>
+    <value>200, 48</value>
   </data>
   <data name="btnFindArea.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -496,13 +466,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnCallNums.Location" type="System.Drawing.Point, System.Drawing">
-    <value>700, 466</value>
-  </data>
-  <data name="btnCallNums.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>525, 379</value>
   </data>
   <data name="btnCallNums.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 59</value>
+    <value>200, 48</value>
   </data>
   <data name="btnCallNums.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -526,13 +493,10 @@
     <value>Segoe UI, 12pt, style=Bold</value>
   </data>
   <data name="tbPointsGoal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 106</value>
-  </data>
-  <data name="tbPointsGoal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>236, 86</value>
   </data>
   <data name="tbPointsGoal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 34</value>
+    <value>167, 29</value>
   </data>
   <data name="tbPointsGoal.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -559,13 +523,10 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 106</value>
-  </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>99, 86</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 37</value>
+    <value>131, 30</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -595,13 +556,10 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>545, 106</value>
-  </data>
-  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>409, 86</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 37</value>
+    <value>161, 30</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -625,13 +583,10 @@
     <value>Segoe UI, 12pt, style=Bold</value>
   </data>
   <data name="tbAttemptsGoal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>768, 107</value>
-  </data>
-  <data name="tbAttemptsGoal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>576, 87</value>
   </data>
   <data name="tbAttemptsGoal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 34</value>
+    <value>167, 29</value>
   </data>
   <data name="tbAttemptsGoal.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -655,13 +610,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnSubmit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>417, 146</value>
-  </data>
-  <data name="btnSubmit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>313, 119</value>
   </data>
   <data name="btnSubmit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 59</value>
+    <value>200, 48</value>
   </data>
   <data name="btnSubmit.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -681,14 +633,17 @@
   <data name="&gt;&gt;btnSubmit.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="tBumpLabels.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1067, 554</value>
+    <value>800, 450</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -766,14 +721,17 @@
         AAH4AAAB/AAAAfwAAAP///////////////8=
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Dewey Trainer</value>
+  </data>
+  <data name="&gt;&gt;tBumpLabels.Name" xml:space="preserve">
+    <value>tBumpLabels</value>
+  </data>
+  <data name="&gt;&gt;tBumpLabels.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmHome</value>

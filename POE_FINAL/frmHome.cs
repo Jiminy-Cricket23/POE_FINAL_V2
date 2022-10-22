@@ -119,6 +119,7 @@ namespace POE_FINAL
                 Program.goalAttempts = int.Parse(tbAttemptsGoal.Text);
                 Program.goalPoints = int.Parse(tbPointsGoal.Text);
                 SetLabels();
+                ms.SuccessMessage("Goals set successfully");
             }
             catch 
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.btnSortingGame = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
@@ -46,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbAttemptsGoal = new System.Windows.Forms.TextBox();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.tBumpLabels = new System.Windows.Forms.Timer(this.components);
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -217,5 +219,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbAttemptsGoal;
         private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Timer tBumpLabels;
     }
 }
