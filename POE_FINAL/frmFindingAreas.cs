@@ -82,9 +82,6 @@ namespace POE_FINAL
                        
                 }
                
-               
-
-                //TODO Generate the 7 random on the right
                 //this while loop puts the now generated value into a random place in the right side array
                 bool bFlag2 = true;
                 while(bFlag2)
@@ -99,6 +96,7 @@ namespace POE_FINAL
                         continue;
                 }
             }
+
             string sLetters = "ABCDEFG";
             //Generates the 3 more for the right
             for (int i = 0; i < 7; i++)
