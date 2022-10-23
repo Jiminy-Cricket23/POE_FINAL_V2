@@ -51,8 +51,10 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void btnFindArea_Click(object sender, EventArgs e)
         {
-            Messages ms = new Messages();
-            ms.ErrorMessage("Game Coming Soon");
+            //ms.ErrorMessage("Game Coming Soon");
+            frmFindingAreas frm = new frmFindingAreas();
+            frm.Show();
+            this.Hide();
         }
 
         /// <summary>
@@ -62,7 +64,6 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void btnCallNums_Click(object sender, EventArgs e)
         {
-            Messages ms = new Messages();
             ms.ErrorMessage("Game Coming Soon");
         }
 
@@ -76,8 +77,7 @@ namespace POE_FINAL
             // displays the acheived attempts
             lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/"+ Program.goalAttempts.ToString();
             lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/"+ Program.goalPoints.ToString();
-            // displaying of messages on different outcomes
-            Messages ms = new Messages();
+
             // success
             if (Program.goalPoints <= Program.acheivedPoints && Program.goalAttempts > Program.acheivedAttempts && Program.goalAttempts != 0 && Program.goalPoints != 0)
                 ms.SuccessMessage("You have successfully completed your Goal!"); 
@@ -124,7 +124,6 @@ namespace POE_FINAL
             }
             catch 
             {
-                Messages ms = new Messages();
                 ms.ErrorMessage("Please Enter a valid Number");
             }
             // buttons are enabled once a goal has been set
