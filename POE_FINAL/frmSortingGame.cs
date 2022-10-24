@@ -196,8 +196,6 @@ namespace POE_FINAL
                 lblSelected.Visible = false;
                 GenerateReport(sw.ElapsedMilliseconds);
                 tAnimation.Start();
-                
-
             }
             else
             {

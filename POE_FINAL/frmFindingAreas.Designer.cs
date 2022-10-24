@@ -52,6 +52,10 @@
             this.btnFinishReport = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
             this.tAnimation = new System.Windows.Forms.Timer(this.components);
+            this.cb1 = new System.Windows.Forms.ComboBox();
+            this.cb2 = new System.Windows.Forms.ComboBox();
+            this.cb3 = new System.Windows.Forms.ComboBox();
+            this.cb4 = new System.Windows.Forms.ComboBox();
             this.pnlHeader.SuspendLayout();
             this.pnlResults.SuspendLayout();
             this.SuspendLayout();
@@ -170,11 +174,11 @@
             // 
             this.lvLeft.AllowDrop = true;
             this.lvLeft.HideSelection = false;
-            this.lvLeft.Location = new System.Drawing.Point(96, 277);
+            this.lvLeft.Location = new System.Drawing.Point(50, 284);
             this.lvLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvLeft.Name = "lvLeft";
             this.lvLeft.OwnerDraw = true;
-            this.lvLeft.Size = new System.Drawing.Size(300, 156);
+            this.lvLeft.Size = new System.Drawing.Size(380, 156);
             this.lvLeft.TabIndex = 29;
             this.lvLeft.UseCompatibleStateImageBehavior = false;
             this.lvLeft.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvLeft_DrawItem);
@@ -183,7 +187,7 @@
             // 
             this.lvRight.AllowDrop = true;
             this.lvRight.HideSelection = false;
-            this.lvRight.Location = new System.Drawing.Point(591, 234);
+            this.lvRight.Location = new System.Drawing.Point(636, 234);
             this.lvRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvRight.Name = "lvRight";
             this.lvRight.OwnerDraw = true;
@@ -331,11 +335,55 @@
             this.btnDone.UseVisualStyleBackColor = false;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
+            // cb1
+            // 
+            this.cb1.Enabled = false;
+            this.cb1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb1.FormattingEnabled = true;
+            this.cb1.Location = new System.Drawing.Point(436, 266);
+            this.cb1.Name = "cb1";
+            this.cb1.Size = new System.Drawing.Size(183, 43);
+            this.cb1.TabIndex = 35;
+            // 
+            // cb2
+            // 
+            this.cb2.Enabled = false;
+            this.cb2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb2.FormattingEnabled = true;
+            this.cb2.Location = new System.Drawing.Point(436, 315);
+            this.cb2.Name = "cb2";
+            this.cb2.Size = new System.Drawing.Size(183, 43);
+            this.cb2.TabIndex = 36;
+            // 
+            // cb3
+            // 
+            this.cb3.Enabled = false;
+            this.cb3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb3.FormattingEnabled = true;
+            this.cb3.Location = new System.Drawing.Point(436, 364);
+            this.cb3.Name = "cb3";
+            this.cb3.Size = new System.Drawing.Size(183, 43);
+            this.cb3.TabIndex = 37;
+            // 
+            // cb4
+            // 
+            this.cb4.Enabled = false;
+            this.cb4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb4.FormattingEnabled = true;
+            this.cb4.Location = new System.Drawing.Point(436, 413);
+            this.cb4.Name = "cb4";
+            this.cb4.Size = new System.Drawing.Size(183, 43);
+            this.cb4.TabIndex = 38;
+            // 
             // frmFindingAreas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 736);
+            this.Controls.Add(this.cb4);
+            this.Controls.Add(this.cb3);
+            this.Controls.Add(this.cb2);
+            this.Controls.Add(this.cb1);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.btnDone);
@@ -381,5 +429,9 @@
         private System.Windows.Forms.Button btnFinishReport;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Timer tAnimation;
+        private System.Windows.Forms.ComboBox cb1;
+        private System.Windows.Forms.ComboBox cb2;
+        private System.Windows.Forms.ComboBox cb3;
+        private System.Windows.Forms.ComboBox cb4;
     }
 }

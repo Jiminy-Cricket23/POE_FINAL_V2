@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,38 @@ namespace POE_FINAL
             {"700", "Arts and Recreation"},
             {"800", "Literature"},
             {"900", "History and Geography"}
+        };
+        private Dictionary<string, string> dicDescriptions = new Dictionary<string,string>(){
+            {"General Knowledge1", "Things that everyone should know."},
+            {"General Knowledge2", "Information that is gathered through different mediums."},
+            {"General Knowledge3", "Knowledge that is not about a specific topic."},
+            {"Philosophy and Psychology1", "Understanding how the human mind works."},
+            {"Philosophy and Psychology2", "The study of how humans think."},
+            {"Philosophy and Psychology3", "The study of the conscious and unconscious phenomena."},
+            {"Religion1", "The study on a supernatural controlling power."},
+            {"Religion2", "The study of Gods."},
+            {"Religion3", "Books about theology."},
+            {"Social Sciences1", "Books about human behaviour in its social and cultural aspects."},
+            {"Social Sciences2", "The study of sciences that are social."},
+            {"Social Sciences3", "Books about any science that is cultural."},
+            {"Languages1", "Books about how people converse."},
+            {"Languages2", "The study of phonic communication."},
+            {"Languages3", "Books surrounding different languages."},
+            {"Science1", "Books about the way the world works."},
+            {"Science2", "The study of the observable world."},
+            {"Science3", "Books about equations that describe the world."},
+            {"Technology1", "The study of manmade creations."},
+            {"Technology2", "Books about machinery."},
+            {"Technology3", "Books about engineering and applied sciences."},
+            {"Arts and Recreation1", "Books about sports."},
+            {"Arts and Recreation2", ""},
+            {"Arts and Recreation3", ""},
+            {"Literature1", ""},
+            {"Literature2", ""},
+            {"Literature3", ""},
+            {"History and Geography1", ""},
+            {"History and Geography2", ""},
+            {"History and Geography3", ""}
         };
         private string[] arrChosen = new string[4];
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
@@ -68,74 +101,16 @@ namespace POE_FINAL
         {
             btnStart.Enabled = false;
             Random rnd = new Random();
-            string[] arrRight = new string[7];
 
-            // Generates the 4 Random on the left
-            for (int i = 0; i < 4; i++)
-            {
-                //This while loop ensures that one of each gets assigned
-                bool bFlag1 = true;
-                while(bFlag1)
-                {
-                    string sGen = rnd.Next(10).ToString() + "00";
-                    // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (arrChosen.Contains(sGen))
-                        continue;
-                    else
-                    {
-                        arrChosen[i] = sGen;
-                        lvLeft.Items.Add(i.ToString()+". "+arrChosen[i]);
-                        bFlag1 = false;
-                    }
-                       
-                }
-               
-                //this while loop puts the now generated value into a random place in the right side array
-                bool bFlag2 = true;
-                while(bFlag2)
-                {
-                    int selected = rnd.Next(7);
-                    if (arrRight[selected] == null)
-                    {
-                        arrRight[selected] = dicCategories[arrChosen[i]];
-                        bFlag2 = false;
-                    }
-                    else
-                        continue;
-                }
-            }
-
-            string sLetters = "ABCDEFG";
-            //Generates the 3 more for the right
-            for (int i = 0; i < 7; i++)
-            {
-                if (arrRight[i] != null)
-                {
-                    lvRight.Items.Add(sLetters[i]+". "+ arrRight[i]);
-                    continue;
-                }
-
-                //This while loop ensures that one of each gets assigned
-                bool bFlag = true;
-                while (bFlag)
-                {
-                    string sGen = dicCategories[rnd.Next(10).ToString() + "00"];
-                    // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (arrRight.Contains(sGen))
-                        continue;
-                    else
-                    {
-                        arrRight[i] = sGen;
-                        lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
-                        bFlag = false;
-                    }
-                }
-            }
+            if (rnd.Next(1) == 0)
+                CallNumbersToDescriptions(rnd);
+            else
+                DescriptionsToCallNumbers(rnd);
 
             // Left Tiles
             lvLeft.View = View.Tile;
             lvLeft.Alignment = ListViewAlignment.Top;
-            lvLeft.TileSize = new System.Drawing.Size(220, 30);
+            lvLeft.TileSize = new System.Drawing.Size(280, 30);
 
             // Right Tiles
             lvRight.View = View.Tile;
@@ -143,6 +118,7 @@ namespace POE_FINAL
             lvRight.TileSize = new System.Drawing.Size(280, 30);
 
             btnDone.Enabled = true;
+
             sw.Start();
         }
 
@@ -205,6 +181,83 @@ namespace POE_FINAL
         private void btnDone_Click(object sender, EventArgs e)
         {
             
+        }
+
+        /// <summary>
+        /// This allows the call numbers to go to descriptions
+        /// </summary>
+        /// <param name="rnd"></param>
+        private void CallNumbersToDescriptions(Random rnd)
+        {
+
+            string[] arrRight = new string[7];
+
+            // Generates the 4 Random on the left
+            for (int i = 0; i < 4; i++)
+            {
+                //This while loop ensures that one of each gets assigned
+                bool bFlag1 = true;
+                while (bFlag1)
+                {
+                    string sGen = rnd.Next(10).ToString() + "00";
+                    // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
+                    if (arrChosen.Contains(sGen))
+                        continue;
+                    else
+                    {
+                        arrChosen[i] = sGen;
+                        lvLeft.Items.Add(i.ToString() + ". " + arrChosen[i]);
+                        bFlag1 = false;
+                    }
+
+                }
+
+                //this while loop puts the now generated value into a random place in the right side array
+                bool bFlag2 = true;
+                while (bFlag2)
+                {
+                    int selected = rnd.Next(7);
+                    if (arrRight[selected] == null)
+                    {
+                        arrRight[selected] = dicCategories[arrChosen[i]];
+                        bFlag2 = false;
+                    }
+                    else
+                        continue;
+                }
+            }
+
+            string sLetters = "ABCDEFG";
+            //Generates the 3 more for the right
+            for (int i = 0; i < 7; i++)
+            {
+                if (arrRight[i] != null)
+                {
+                    lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
+                    continue;
+                }
+
+                //This while loop ensures that one of each gets assigned
+                bool bFlag = true;
+                while (bFlag)
+                {
+                    string sGen = dicCategories[rnd.Next(10).ToString() + "00"];
+                    // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
+                    if (arrRight.Contains(sGen))
+                        continue;
+                    else
+                    {
+                        arrRight[i] = sGen;
+                        lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
+                        bFlag = false;
+                    }
+                }
+            }
+        }
+
+        private void DescriptionsToCallNumbers(Random rnd)
+        {
+
         }
     }
 }
