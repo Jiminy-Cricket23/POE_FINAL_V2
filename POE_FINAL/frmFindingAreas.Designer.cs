@@ -146,7 +146,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnClose.Location = new System.Drawing.Point(1024, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 41);
             this.btnClose.TabIndex = 24;
@@ -162,7 +162,7 @@
             this.btnStart.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnStart.Location = new System.Drawing.Point(165, 617);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(343, 79);
             this.btnStart.TabIndex = 28;

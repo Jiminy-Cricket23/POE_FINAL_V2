@@ -52,14 +52,14 @@ namespace POE_FINAL
             {"Technology2", "Books about machinery."},
             {"Technology3", "Books about engineering and applied sciences."},
             {"Arts and Recreation1", "Books about sports."},
-            {"Arts and Recreation2", ""},
-            {"Arts and Recreation3", ""},
-            {"Literature1", ""},
-            {"Literature2", ""},
-            {"Literature3", ""},
-            {"History and Geography1", ""},
-            {"History and Geography2", ""},
-            {"History and Geography3", ""}
+            {"Arts and Recreation2", "Books about music."},
+            {"Arts and Recreation3", "Books about painting"},
+            {"Literature1", "Books about how books were written"},
+            {"Literature2", "Books about writers."},
+            {"Literature3", "The study of writers communicating their work."},
+            {"History and Geography1", "Books about what has happened in the world."},
+            {"History and Geography2", "Books about navigating the world."},
+            {"History and Geography3", "The study of what and where important events happened."}
         };
         private string[] arrChosen = new string[4];
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
@@ -147,7 +147,7 @@ namespace POE_FINAL
                 e.Graphics.DrawRectangle(Pens.Black, e.Bounds);
 
                 //Segoe UI, 21.75pt, style=BoldbtnStart.Font
-                Font ftItem = new Font("Segoe UI", 15);
+                Font ftItem = new Font("Segoe UI", 10);
                 TextRenderer.DrawText(e.Graphics, e.Item.Text, ftItem, e.Bounds, Color.Black, Color.Empty, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
             catch (Exception ex)
@@ -169,7 +169,7 @@ namespace POE_FINAL
                 e.Graphics.DrawRectangle(Pens.Black, e.Bounds);
 
                 //Segoe UI, 21.75pt, style=BoldbtnStart.Font
-                Font ftItem = new Font("Segoe UI", 15);
+                Font ftItem = new Font("Segoe UI", 10);
                 TextRenderer.DrawText(e.Graphics, e.Item.Text, ftItem, e.Bounds, Color.Black, Color.Empty, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
             catch (Exception ex)
@@ -190,6 +190,7 @@ namespace POE_FINAL
         private void CallNumbersToDescriptions(Random rnd)
         {
 
+            string[] arrCategories = new string[7];
             string[] arrRight = new string[7];
 
             // Generates the 4 Random on the left
@@ -219,7 +220,12 @@ namespace POE_FINAL
                     int selected = rnd.Next(7);
                     if (arrRight[selected] == null)
                     {
-                        arrRight[selected] = dicCategories[arrChosen[i]];
+                        bool bFlag3 = true;
+                        while(bFlag3)
+                        {
+                            string sGen = dicDescriptions[ dicCategories[arrChosen[i]];
+                        }
+                        arrRight[selected] = ;
                         bFlag2 = false;
                     }
                     else
@@ -228,28 +234,44 @@ namespace POE_FINAL
             }
 
             string sLetters = "ABCDEFG";
+            
             //Generates the 3 more for the right
             for (int i = 0; i < 7; i++)
             {
-                if (arrRight[i] != null)
+                if (arrCategories[i] != null)
                 {
-                    lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
+                    lvRight.Items.Add(sLetters[i] + ". " + arrCategories[i]);
                     continue;
                 }
 
                 //This while loop ensures that one of each gets assigned
-                bool bFlag = true;
-                while (bFlag)
+                bool bFlag1 = true;
+                while (bFlag1)
                 {
                     string sGen = dicCategories[rnd.Next(10).ToString() + "00"];
                     // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (arrRight.Contains(sGen))
+                    if (arrCategories.Contains(sGen))
+                        continue;
+                    else
+                    {
+                        arrCategories[i] = sGen;
+                        bFlag1 = false;
+                    }
+                }
+
+                //Randomising the 1 of 3 descriptions
+                bool bFlag2 = true;
+                while (bFlag2)
+                {
+                    string sGen = dicDescriptions[arrCategories[i] + rnd.Next(1, 4).ToString()];
+                    
+                    if (arrCategories.Contains(sGen))
                         continue;
                     else
                     {
                         arrRight[i] = sGen;
                         lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
-                        bFlag = false;
+                        bFlag2 = false;
                     }
                 }
             }
