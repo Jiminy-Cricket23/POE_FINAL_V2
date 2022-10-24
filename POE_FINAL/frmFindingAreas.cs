@@ -61,7 +61,8 @@ namespace POE_FINAL
             {"History and Geography2", "Books about navigating the world."},
             {"History and Geography3", "The study of what and where important events happened."}
         };
-        private string[] arrChosen = new string[4];
+        //private string[] arrChosen = new string[4];
+        List<string> lsChosen = new List<string>();
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
         private int len = 1300; //  this is for the animation of the results pannel
         private Dictionary<string, string> dicRight = new Dictionary<string, string>();
@@ -102,8 +103,8 @@ namespace POE_FINAL
         {
             btnStart.Enabled = false;
             Random rnd = new Random();
-
-            if (rnd.Next(1) == 0)
+            
+            if (rnd.Next(2) == 0)
                 CallNumbersToDescriptions(rnd);
             else
                 DescriptionsToCallNumbers(rnd);
@@ -208,7 +209,7 @@ namespace POE_FINAL
 
             for(int i = 0; i < 4; i++)
             {
-                if (!dicCategories[arrChosen[i]].Equals(dicRight[arrSelected[i]]))
+                if (!dicCategories[lsChosen[i]].Equals(dicRight[arrSelected[i]]))
                 {
                     ms.ErrorMessage("Selection "+ i.ToString() + " is wrong!");
                 }
@@ -238,7 +239,6 @@ namespace POE_FINAL
         /// <param name="rnd"></param>
         private void CallNumbersToDescriptions(Random rnd)
         {
-
             string[] arrDiscriptions = new string[7]; //this contains the descriptions of the different call numbers
             string[] arrRight = new string[7]; // this contains the categories that are selected
             string sLetters = "ABCDEFG"; // this is for all the letters to match the rows
@@ -251,12 +251,12 @@ namespace POE_FINAL
                 {
                     string sGen = rnd.Next(10).ToString() + "00";
                     // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (arrChosen.Contains(sGen))
+                    if (lsChosen.Contains(sGen))
                         continue;
                     else
                     {
-                        arrChosen[i] = sGen;
-                        lvLeft.Items.Add((i + 1).ToString() + ". " + arrChosen[i]);
+                        lsChosen.Add(sGen);
+                        lvLeft.Items.Add((i + 1).ToString() + ". " + sGen);
                         bFlag1 = false;
                     }
 
@@ -273,12 +273,12 @@ namespace POE_FINAL
                         bool bFlag3 = true;
                         while(bFlag3) // Makes sure that that value is not a duplicate
                         {
-                            string sGen = dicDescriptions[dicCategories[arrChosen[i]] + rnd.Next(1, 4).ToString()];
+                            string sGen = dicDescriptions[dicCategories[lsChosen[i]] + rnd.Next(1, 4).ToString()];
                             if (arrDiscriptions.Contains(sGen))
                                 continue;
                             else
                             {
-                                arrRight[selected] = dicCategories[arrChosen[i]]; // this is to compare that only one description from each category is selected
+                                arrRight[selected] = dicCategories[lsChosen[i]]; // this is to compare that only one description from each category is selected
                                 arrDiscriptions[selected] = sGen;
                                 bFlag3 = false;
                             }
@@ -318,6 +318,7 @@ namespace POE_FINAL
                 }
 
                 //Randomising the 1 of 3 descriptions from the previously selected category
+                // NOTE maybe this can be moved out of the while loop
                 bool bFlag2 = true;
                 while (bFlag2)
                 {
@@ -338,8 +339,52 @@ namespace POE_FINAL
         }
 
         private void DescriptionsToCallNumbers(Random rnd)
-        {
+        { 
+            string[] arrCallNumbers = new string[7]; //this contains the call numbers which are then chosen from to get the 
+            string[] arrLeft = new string[4]; // this contains the categories that are selected
+            string sLetters = "ABCDEFG"; // this is for all the letters to match the rows
 
+            // Generates the 7 Random on the right
+            for (int i = 0; i < 7; i++)
+            {
+                //This while loop ensures that one of each gets assigned
+                bool bFlag = true;
+                while (bFlag)
+                {
+                    string sGen = rnd.Next(10).ToString() + "00";
+                    // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
+                    if (arrCallNumbers.Contains(sGen))
+                        continue;
+                    else
+                    {
+                        arrCallNumbers[i] = sGen;
+                        dicRight.Add(sLetters[i].ToString(), sGen);
+                        lvRight.Items.Add(sLetters[i].ToString() + ". " + sGen);
+                        bFlag = false;
+                    }
+
+                }
+            }
+            
+            for (int i = 0; i < 4; i++)
+            {
+                bool bFlag1 = true;
+                while (bFlag1)
+                {
+                    int selected = rnd.Next(7);
+                    if (arrLeft.Contains(arrCallNumbers[selected]))
+                        continue;
+                    else
+                    {
+                        //TODO Get category
+                        lsChosen.Add(arrCallNumbers[selected]);
+
+                        //TODO Generate a random description
+                        lvLeft.Items.Add((i + 1).ToString()+". " + dicDescriptions[dicCategories[arrCallNumbers[selected]] + rnd.Next(1, 4).ToString()]);
+                        bFlag1 = false;
+                    }
+                }
+            }            
         }
 
         private void tAnimation_Tick(object sender, EventArgs e)
