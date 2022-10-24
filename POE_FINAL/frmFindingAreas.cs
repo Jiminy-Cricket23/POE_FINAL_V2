@@ -63,7 +63,7 @@ namespace POE_FINAL
         };
         private string[] arrChosen = new string[4];
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
-        private int len = 1100; //  this is for the animation of the results pannel
+        private int len = 1300; //  this is for the animation of the results pannel
 
         public frmFindingAreas()
         {
@@ -106,17 +106,35 @@ namespace POE_FINAL
                 CallNumbersToDescriptions(rnd);
             else
                 DescriptionsToCallNumbers(rnd);
-
+            //THESE ARE NO LONGER NEEDED AS IT IS BETTER TO DO IT IN THE DESIGNER
             // Left Tiles
-            lvLeft.View = View.Tile;
-            lvLeft.Alignment = ListViewAlignment.Top;
-            lvLeft.TileSize = new System.Drawing.Size(280, 30);
+            //lvLeft.View = View.Tile;
+            //lvLeft.Alignment = ListViewAlignment.Top;
+            //lvLeft.TileSize = new System.Drawing.Size(400, 50);
 
             // Right Tiles
-            lvRight.View = View.Tile;
-            lvRight.Alignment = ListViewAlignment.Top;
-            lvRight.TileSize = new System.Drawing.Size(280, 30);
+            //lvRight.View = View.Tile;
+            //lvRight.Alignment = ListViewAlignment.Top;
+            //lvRight.TileSize = new System.Drawing.Size(400, 50);
 
+            string sLetters = "ABCDEFG";
+            for (int i = 0; i < sLetters.Length; i++)
+            {
+                cb1.Items.Add(sLetters[i]);
+                cb2.Items.Add(sLetters[i]);
+                cb3.Items.Add(sLetters[i]);
+                cb4.Items.Add(sLetters[i]);
+            }
+
+            cb1.SelectedIndex = 0;
+            cb2.SelectedIndex = 1;
+            cb3.SelectedIndex = 2;
+            cb4.SelectedIndex = 3;
+
+            cb1.Enabled = true;
+            cb2.Enabled = true;
+            cb3.Enabled = true;
+            cb4.Enabled = true;
             btnDone.Enabled = true;
 
             sw.Start();
@@ -207,7 +225,7 @@ namespace POE_FINAL
                     else
                     {
                         arrChosen[i] = sGen;
-                        lvLeft.Items.Add(i.ToString() + ". " + arrChosen[i]);
+                        lvLeft.Items.Add((i + 1).ToString() + ". " + arrChosen[i]);
                         bFlag1 = false;
                     }
 
