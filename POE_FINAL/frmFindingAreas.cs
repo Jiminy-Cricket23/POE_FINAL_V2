@@ -64,6 +64,7 @@ namespace POE_FINAL
         private string[] arrChosen = new string[4];
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
         private int len = 1300; //  this is for the animation of the results pannel
+        private Dictionary<string, string> dicRight = new Dictionary<string, string>();
 
         public frmFindingAreas()
         {
@@ -130,8 +131,7 @@ namespace POE_FINAL
             cb2.SelectedIndex = 1;
             cb3.SelectedIndex = 2;
             cb4.SelectedIndex = 3;
-            //TODO Use a dictionary to store ABC so that it can be called for validation rather than the right array
-
+            
             cb1.Enabled = true;
             cb2.Enabled = true;
             cb3.Enabled = true;
@@ -199,7 +199,37 @@ namespace POE_FINAL
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            
+            // This array gets all the values of the selected values
+            string[] arrSelected = new string[4];
+            arrSelected[0] = cb1.Text.Trim();
+            arrSelected[1] = cb2.Text.Trim();
+            arrSelected[2] = cb3.Text.Trim();
+            arrSelected[3] = cb4.Text.Trim();
+
+            for(int i = 0; i < 4; i++)
+            {
+                if (!dicCategories[arrChosen[i]].Equals(dicRight[arrSelected[i]]))
+                {
+                    ms.ErrorMessage("Selection "+ i.ToString() + " is wrong!");
+                }
+                else
+                {
+                    ms.SuccessMessage("Congrats");
+                    lvLeft.Items.Clear();
+                    lvRight.Items.Clear();
+                    cb1.Items.Clear();
+                    cb2.Items.Clear();
+                    cb3.Items.Clear();
+                    cb4.Items.Clear();
+
+                    btnDone.Enabled = false;
+                    btnStart.Enabled = true;
+                    tAnimation.Start();
+
+                    break;
+                }
+                    
+            }
         }
 
         /// <summary>
@@ -211,7 +241,7 @@ namespace POE_FINAL
 
             string[] arrDiscriptions = new string[7]; //this contains the descriptions of the different call numbers
             string[] arrRight = new string[7]; // this contains the categories that are selected
-
+            string sLetters = "ABCDEFG"; // this is for all the letters to match the rows
             // Generates the 4 Random on the left
             for (int i = 0; i < 4; i++)
             {
@@ -260,7 +290,7 @@ namespace POE_FINAL
                 }
             }
 
-            string sLetters = "ABCDEFG";
+            
             //Generates the 3 more for the right
             for (int i = 0; i < 7; i++)
             {
@@ -268,6 +298,7 @@ namespace POE_FINAL
                 if (arrDiscriptions[i] != null)
                 {
                     lvRight.Items.Add(sLetters[i] + ". " + arrDiscriptions[i]);
+                    dicRight.Add(sLetters[i].ToString(), arrRight[i]);
                     continue;
                 }
 
@@ -301,12 +332,27 @@ namespace POE_FINAL
                         bFlag2 = false;
                     }
                 }
+                dicRight.Add(sLetters[i].ToString(), arrRight[i]);
+                
             }
         }
 
         private void DescriptionsToCallNumbers(Random rnd)
         {
 
+        }
+
+        private void tAnimation_Tick(object sender, EventArgs e)
+        {
+            //int len = starting point
+            if (len != 0)
+            {
+                len -= 10;
+                pnlResults.Location = new Point(len, 80);
+                pnlResults.Update();
+            }
+            else
+                tAnimation.Stop();
         }
     }
 }
