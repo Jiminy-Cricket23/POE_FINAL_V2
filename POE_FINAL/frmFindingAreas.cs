@@ -190,8 +190,8 @@ namespace POE_FINAL
         private void CallNumbersToDescriptions(Random rnd)
         {
 
-            string[] arrCategories = new string[7];
-            string[] arrRight = new string[7];
+            string[] arrDiscriptions = new string[7]; //this contains the descriptions of the different call numbers
+            string[] arrRight = new string[7]; // this contains the categories that are selected
 
             // Generates the 4 Random on the left
             for (int i = 0; i < 4; i++)
@@ -214,18 +214,26 @@ namespace POE_FINAL
                 }
 
                 //this while loop puts the now generated value into a random place in the right side array
+                // Note that these are all unique already
                 bool bFlag2 = true;
                 while (bFlag2)
                 {
                     int selected = rnd.Next(7);
-                    if (arrRight[selected] == null)
+                    if (arrDiscriptions[selected] == null) // checks to see if it contains A VALUE
                     {
                         bool bFlag3 = true;
-                        while(bFlag3)
+                        while(bFlag3) // Makes sure that that value is not a duplicate
                         {
-                            string sGen = dicDescriptions[ dicCategories[arrChosen[i]];
+                            string sGen = dicDescriptions[dicCategories[arrChosen[i]] + rnd.Next(1, 4).ToString()];
+                            if (arrDiscriptions.Contains(sGen))
+                                continue;
+                            else
+                            {
+                                arrRight[selected] = dicCategories[arrChosen[i]]; // this is to compare that only one description from each category is selected
+                                arrDiscriptions[selected] = sGen;
+                                bFlag3 = false;
+                            }
                         }
-                        arrRight[selected] = ;
                         bFlag2 = false;
                     }
                     else
@@ -234,43 +242,43 @@ namespace POE_FINAL
             }
 
             string sLetters = "ABCDEFG";
-            
             //Generates the 3 more for the right
             for (int i = 0; i < 7; i++)
             {
-                if (arrCategories[i] != null)
+                // if it contains a value at this index display it
+                if (arrDiscriptions[i] != null)
                 {
-                    lvRight.Items.Add(sLetters[i] + ". " + arrCategories[i]);
+                    lvRight.Items.Add(sLetters[i] + ". " + arrDiscriptions[i]);
                     continue;
                 }
 
-                //This while loop ensures that one of each gets assigned
+                //This while loop ensures that it's a unique category being selected for a description
                 bool bFlag1 = true;
                 while (bFlag1)
                 {
                     string sGen = dicCategories[rnd.Next(10).ToString() + "00"];
                     // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (arrCategories.Contains(sGen))
-                        continue;
-                    else
-                    {
-                        arrCategories[i] = sGen;
-                        bFlag1 = false;
-                    }
-                }
-
-                //Randomising the 1 of 3 descriptions
-                bool bFlag2 = true;
-                while (bFlag2)
-                {
-                    string sGen = dicDescriptions[arrCategories[i] + rnd.Next(1, 4).ToString()];
-                    
-                    if (arrCategories.Contains(sGen))
+                    if (arrRight.Contains(sGen))
                         continue;
                     else
                     {
                         arrRight[i] = sGen;
-                        lvRight.Items.Add(sLetters[i] + ". " + arrRight[i]);
+                        bFlag1 = false;
+                    }
+                }
+
+                //Randomising the 1 of 3 descriptions from the previously selected category
+                bool bFlag2 = true;
+                while (bFlag2)
+                {
+                    string sGen = dicDescriptions[arrRight[i] + rnd.Next(1, 4).ToString()];
+                    
+                    if (arrDiscriptions.Contains(sGen))
+                        continue;
+                    else
+                    {
+                        arrDiscriptions[i] = sGen;
+                        lvRight.Items.Add(sLetters[i] + ". " + arrDiscriptions[i]);
                         bFlag2 = false;
                     }
                 }
