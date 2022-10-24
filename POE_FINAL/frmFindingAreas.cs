@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace POE_FINAL
             {"900", "History and Geography"}
         };
         private string[] arrChosen = new string[4];
+        private Stopwatch sw = new Stopwatch(); // measures how long it takes
+        private int len = 1100; //  this is for the animation of the results pannel
 
         public frmFindingAreas()
         {
@@ -56,6 +59,11 @@ namespace POE_FINAL
             this.Hide();
         }
 
+        /// <summary>
+        /// This starts the game and populates the list view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
@@ -132,20 +140,22 @@ namespace POE_FINAL
             // Right Tiles
             lvRight.View = View.Tile;
             lvRight.Alignment = ListViewAlignment.Top;
-            lvRight.TileSize = new System.Drawing.Size(220, 30);
+            lvRight.TileSize = new System.Drawing.Size(280, 30);
 
-            //btnDone.Enabled = true;
-            //sw.Start();
+            btnDone.Enabled = true;
+            sw.Start();
         }
 
         /// <summary>
-        /// The Dictionary loads as the form loads
+        /// Loads the points when the form loads
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmFindingAreas_Load(object sender, EventArgs e)
         {
-            
+            pnlResults.Location = new Point(len, 80);
+            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
+            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
         }
 
         /// <summary>
@@ -190,6 +200,11 @@ namespace POE_FINAL
             {
                 ms.ErrorMessage(ex.ToString());
             }
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
