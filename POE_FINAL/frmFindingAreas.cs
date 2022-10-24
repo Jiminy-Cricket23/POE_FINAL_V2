@@ -130,6 +130,7 @@ namespace POE_FINAL
             cb2.SelectedIndex = 1;
             cb3.SelectedIndex = 2;
             cb4.SelectedIndex = 3;
+            //TODO Use a dictionary to store ABC so that it can be called for validation rather than the right array
 
             cb1.Enabled = true;
             cb2.Enabled = true;
