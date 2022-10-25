@@ -80,7 +80,13 @@ namespace POE_FINAL
 
             // success
             if (Program.goalPoints <= Program.acheivedPoints && Program.goalAttempts > Program.acheivedAttempts && Program.goalAttempts != 0 && Program.goalPoints != 0)
-                ms.SuccessMessage("You have successfully completed your Goal!"); 
+            {
+                ms.SuccessMessage("You have successfully completed your Goal!");
+                Program.goalAttempts = 0;
+                Program.goalPoints = 0;
+                Program.acheivedAttempts = 0;
+                Program.acheivedPoints = 0;
+            }
 
             // have not met goal and resets until the button has been clicked and new values have been entered
             if (Program.goalAttempts < Program.acheivedAttempts && Program.goalAttempts != 0)
