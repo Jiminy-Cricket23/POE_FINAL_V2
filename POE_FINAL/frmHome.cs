@@ -82,25 +82,14 @@ namespace POE_FINAL
             if (Program.goalPoints <= Program.acheivedPoints && Program.goalAttempts > Program.acheivedAttempts && Program.goalAttempts != 0 && Program.goalPoints != 0)
             {
                 ms.SuccessMessage("You have successfully completed your Goal!");
-                Program.goalAttempts = 0;
-                Program.goalPoints = 0;
-                Program.acheivedAttempts = 0;
-                Program.acheivedPoints = 0;
+                ResetPoints();  
             }
 
             // have not met goal and resets until the button has been clicked and new values have been entered
             if (Program.goalAttempts < Program.acheivedAttempts && Program.goalAttempts != 0)
             {
-                
-                ms.ErrorMessage("You have failed to complete your Goal!"); 
-                Program.acheivedAttempts = 0;
-                Program.acheivedPoints = 0;
-                Program.goalAttempts = 0;
-                Program.goalPoints = 0;
-
-                btnSortingGame.Enabled = false;
-                btnFindArea.Enabled = false;
-                btnCallNums.Enabled = false;
+                ms.ErrorMessage("You have failed to complete your Goal!");
+                ResetPoints();
             }
 
             // if the goal and attempts have not been set yet they can't get to the games
@@ -111,6 +100,21 @@ namespace POE_FINAL
                 btnCallNums.Enabled = true;
             }
                 
+        }
+
+        /// <summary>
+        /// This method resets all the points, attempts and goals
+        /// </summary>
+        private void ResetPoints()
+        {
+            Program.acheivedAttempts = 0;
+            Program.acheivedPoints = 0;
+            Program.goalAttempts = 0;
+            Program.goalPoints = 0;
+
+            btnSortingGame.Enabled = false;
+            btnFindArea.Enabled = false;
+            btnCallNums.Enabled = false;
         }
 
         /// <summary>
