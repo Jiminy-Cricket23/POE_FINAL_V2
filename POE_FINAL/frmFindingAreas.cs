@@ -17,6 +17,7 @@ namespace POE_FINAL
     public partial class frmFindingAreas : Form
     {
         private Messages ms = new Messages();
+        /*
         private Dictionary<string, string> dicCategories = new Dictionary<string,string>(){
             {"000", "General Knowledge"},
             {"100", "Philosophy and Psychology"},
@@ -60,7 +61,42 @@ namespace POE_FINAL
             {"History and Geography1", "Books about what has happened in the world."},
             {"History and Geography2", "Books about navigating the world."},
             {"History and Geography3", "The study of what and where important events happened."}
+        }; */
+        // this dictionary stores the call numbers with an added digit to randomly get  1 of 3 descriptions
+        private Dictionary<string, string> dicDescriptions = new Dictionary<string, string>(){
+            {"0001", "Things that everyone should know."},
+            {"0002", "Information that is gathered through different mediums."},
+            {"0003", "Knowledge that is not about a specific topic."},
+            {"1001", "Understanding how the human mind works."},
+            {"1002", "The study of how humans think."},
+            {"1003", "The study of the conscious and unconscious phenomena."},
+            {"2001", "The study on a supernatural controlling power."},
+            {"2002", "The study of Gods."},
+            {"2003", "Books about theology."},
+            {"3001", "Books about human behaviour in its social and cultural aspects."},
+            {"3002", "The study of sciences that are social."},
+            {"3003", "Books about any science that is cultural."},
+            {"4001", "Books about how people converse."},
+            {"4002", "The study of phonic communication."},
+            {"4003", "Books surrounding different languages."},
+            {"5001", "Books about the way the world works."},
+            {"5002", "The study of the observable world."},
+            {"5003", "Books about equations that describe the world."},
+            {"6001", "The study of manmade creations."},
+            {"6002", "Books about machinery."},
+            {"6003", "Books about engineering and applied sciences."},
+            {"7001", "Books about sports."},
+            {"7002", "Books about music."},
+            {"7003", "Books about painting"},
+            {"8001", "Books about how books were written"},
+            {"8002", "Books about writers."},
+            {"8003", "The study of writers communicating their work."},
+            {"9001", "Books about what has happened in the world."},
+            {"9002", "Books about navigating the world."},
+            {"9003", "The study of what and where important events happened."}
         };
+
+
         //private string[] arrChosen = new string[4];
         List<string> lsChosen = new List<string>();
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
@@ -207,13 +243,16 @@ namespace POE_FINAL
             arrSelected[2] = cb3.Text.Trim();
             arrSelected[3] = cb4.Text.Trim();
 
+            bool bFlag = true;
             for(int i = 0; i < 4; i++)
             {
-                if (!dicCategories[lsChosen[i]].Equals(dicRight[arrSelected[i]]))
+                if (!lsChosen[i].Equals(dicRight[arrSelected[i]]))
                 {
-                    ms.ErrorMessage("Selection "+ i.ToString() + " is wrong!");
+                    ms.ErrorMessage("Selection "+ (i+1).ToString() + " is wrong!");
+                    bFlag = false;
                 }
-                else
+
+                if (bFlag && i == 3)
                 {
                     ms.SuccessMessage("Congrats");
                     lvLeft.Items.Clear();
@@ -226,8 +265,6 @@ namespace POE_FINAL
                     btnDone.Enabled = false;
                     btnStart.Enabled = true;
                     tAnimation.Start();
-
-                    break;
                 }
                     
             }
@@ -270,19 +307,8 @@ namespace POE_FINAL
                     int selected = rnd.Next(7);
                     if (arrDiscriptions[selected] == null) // checks to see if it contains A VALUE
                     {
-                        bool bFlag3 = true;
-                        while(bFlag3) // Makes sure that that value is not a duplicate
-                        {
-                            string sGen = dicDescriptions[dicCategories[lsChosen[i]] + rnd.Next(1, 4).ToString()];
-                            if (arrDiscriptions.Contains(sGen))
-                                continue;
-                            else
-                            {
-                                arrRight[selected] = dicCategories[lsChosen[i]]; // this is to compare that only one description from each category is selected
-                                arrDiscriptions[selected] = sGen;
-                                bFlag3 = false;
-                            }
-                        }
+                        arrRight[selected] = lsChosen[i]; // this is to compare that only one description from each category is selected
+                        arrDiscriptions[selected] = dicDescriptions[lsChosen[i] + rnd.Next(1, 4).ToString()];
                         bFlag2 = false;
                     }
                     else
@@ -306,7 +332,7 @@ namespace POE_FINAL
                 bool bFlag1 = true;
                 while (bFlag1)
                 {
-                    string sGen = dicCategories[rnd.Next(10).ToString() + "00"];
+                    string sGen = rnd.Next(10).ToString() + "00";
                     // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
                     if (arrRight.Contains(sGen))
                         continue;
@@ -318,30 +344,15 @@ namespace POE_FINAL
                 }
 
                 //Randomising the 1 of 3 descriptions from the previously selected category
-                // NOTE maybe this can be moved out of the while loop
-                bool bFlag2 = true;
-                while (bFlag2)
-                {
-                    string sGen = dicDescriptions[arrRight[i] + rnd.Next(1, 4).ToString()];
-                    
-                    if (arrDiscriptions.Contains(sGen))
-                        continue;
-                    else
-                    {
-                        arrDiscriptions[i] = sGen;
-                        lvRight.Items.Add(sLetters[i] + ". " + arrDiscriptions[i]);
-                        bFlag2 = false;
-                    }
-                }
-                dicRight.Add(sLetters[i].ToString(), arrRight[i]);
-                
+                arrDiscriptions[i] = dicDescriptions[arrRight[i] + rnd.Next(1, 4).ToString()];
+                lvRight.Items.Add(sLetters[i] + ". " + arrDiscriptions[i]);
+                dicRight.Add(sLetters[i].ToString(), arrRight[i]); // this can be here because the above version continues
             }
         }
 
         private void DescriptionsToCallNumbers(Random rnd)
         { 
             string[] arrCallNumbers = new string[7]; //this contains the call numbers which are then chosen from to get the 
-            string[] arrLeft = new string[4]; // this contains the categories that are selected
             string sLetters = "ABCDEFG"; // this is for all the letters to match the rows
 
             // Generates the 7 Random on the right
@@ -372,15 +383,14 @@ namespace POE_FINAL
                 while (bFlag1)
                 {
                     int selected = rnd.Next(7);
-                    if (arrLeft.Contains(arrCallNumbers[selected]))
+                    if (lsChosen.Contains(arrCallNumbers[selected]))
                         continue;
                     else
                     {
-                        //TODO Get category
                         lsChosen.Add(arrCallNumbers[selected]);
 
                         //TODO Generate a random description
-                        lvLeft.Items.Add((i + 1).ToString()+". " + dicDescriptions[dicCategories[arrCallNumbers[selected]] + rnd.Next(1, 4).ToString()]);
+                        lvLeft.Items.Add((i + 1).ToString()+". " + dicDescriptions[arrCallNumbers[selected] + rnd.Next(1, 4).ToString()]);
                         bFlag1 = false;
                     }
                 }
