@@ -17,7 +17,7 @@ namespace POE_FINAL
     public partial class frmFindingAreas : Form
     {
         private Messages ms = new Messages();
-        /*
+        /* DO NOT NEED 2 DICTIONARIES
         private Dictionary<string, string> dicCategories = new Dictionary<string,string>(){
             {"000", "General Knowledge"},
             {"100", "Philosophy and Psychology"},
@@ -97,8 +97,8 @@ namespace POE_FINAL
         };
 
 
-        //private string[] arrChosen = new string[4];
-        List<string> lsChosen = new List<string>();
+        private string[] arrChosen = new string[4];
+        //List<string> lsChosen = new List<string>();
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
         private int len = 1300; //  this is for the animation of the results pannel
         private Dictionary<string, string> dicRight = new Dictionary<string, string>();
@@ -246,7 +246,7 @@ namespace POE_FINAL
             bool bFlag = true;
             for(int i = 0; i < 4; i++)
             {
-                if (!lsChosen[i].Equals(dicRight[arrSelected[i]]))
+                if (!arrChosen[i].Equals(dicRight[arrSelected[i]]))
                 {
                     ms.ErrorMessage("Selection "+ (i+1).ToString() + " is wrong!");
                     bFlag = false;
@@ -288,11 +288,11 @@ namespace POE_FINAL
                 {
                     string sGen = rnd.Next(10).ToString() + "00";
                     // using logic from https://www.tutorialspoint.com/how-to-check-in-chash-whether-the-string-array-contains-a-particular-work-in-a-string-array#:~:text=Contains()%20is%20a%20string,returns%20True%2C%20otherwise%20returns%20False.
-                    if (lsChosen.Contains(sGen))
+                    if (arrChosen.Contains(sGen))
                         continue;
                     else
                     {
-                        lsChosen.Add(sGen);
+                        arrChosen[i] = sGen;
                         lvLeft.Items.Add((i + 1).ToString() + ". " + sGen);
                         bFlag1 = false;
                     }
@@ -307,8 +307,8 @@ namespace POE_FINAL
                     int selected = rnd.Next(7);
                     if (arrDiscriptions[selected] == null) // checks to see if it contains A VALUE
                     {
-                        arrRight[selected] = lsChosen[i]; // this is to compare that only one description from each category is selected
-                        arrDiscriptions[selected] = dicDescriptions[lsChosen[i] + rnd.Next(1, 4).ToString()];
+                        arrRight[selected] = arrChosen[i]; // this is to compare that only one description from each category is selected
+                        arrDiscriptions[selected] = dicDescriptions[arrChosen[i] + rnd.Next(1, 4).ToString()];
                         bFlag2 = false;
                     }
                     else
@@ -383,13 +383,13 @@ namespace POE_FINAL
                 while (bFlag1)
                 {
                     int selected = rnd.Next(7);
-                    if (lsChosen.Contains(arrCallNumbers[selected]))
+                    if (arrChosen.Contains(arrCallNumbers[selected]))
                         continue;
                     else
                     {
-                        lsChosen.Add(arrCallNumbers[selected]);
+                        arrChosen[i] = arrCallNumbers[selected];
 
-                        //TODO Generate a random description
+                        //Generate a random description
                         lvLeft.Items.Add((i + 1).ToString()+". " + dicDescriptions[arrCallNumbers[selected] + rnd.Next(1, 4).ToString()]);
                         bFlag1 = false;
                     }
