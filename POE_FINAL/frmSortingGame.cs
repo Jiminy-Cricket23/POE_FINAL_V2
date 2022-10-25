@@ -147,7 +147,7 @@ namespace POE_FINAL
         {
             btnDone.Enabled = false;
 
-            sw.Stop();
+            
             //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
 
             // The list the user has, one of the structures the other of the unicode
@@ -186,6 +186,7 @@ namespace POE_FINAL
             }
             if (iWrong == 1 || !bFlag)
             {
+                sw.Stop();
                 ms.SuccessMessage("You have put them in right order");
                 lvBooks.Clear();
                 lBooks.Clear();

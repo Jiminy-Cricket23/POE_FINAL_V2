@@ -235,9 +235,14 @@ namespace POE_FINAL
             }
         }
 
+        /// <summary>
+        /// Once the user is done it stops the time watch and calls the generate report method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDone_Click(object sender, EventArgs e)
         {
-            sw.Stop();
+            
             // This array gets all the values of the selected values
             string[] arrSelected = new string[4];
             arrSelected[0] = cb1.Text.Trim();
@@ -259,7 +264,8 @@ namespace POE_FINAL
 
                 if (bFlag && i == 3)
                 {
-                    ms.SuccessMessage("Congrats");
+                    sw.Stop();
+                    ms.SuccessMessage("Your selection is correct!");
                     lvLeft.Items.Clear();
                     lvRight.Items.Clear();
                     cb1.Items.Clear();
@@ -354,6 +360,10 @@ namespace POE_FINAL
             }
         }
 
+        /// <summary>
+        /// This is for matching the descriptions to call numbers version of this game
+        /// </summary>
+        /// <param name="rnd"></param>
         private void DescriptionsToCallNumbers(Random rnd)
         { 
             string[] arrCallNumbers = new string[7]; //this contains the call numbers which are then chosen from to get the 
@@ -401,6 +411,11 @@ namespace POE_FINAL
             }            
         }
 
+        /// <summary>
+        /// This is to animate in the results pannel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tAnimation_Tick(object sender, EventArgs e)
         {
             //int len = starting point
@@ -479,6 +494,11 @@ namespace POE_FINAL
             //SetLabels(); this looks tacky here
         }
 
+        /// <summary>
+        /// This button is clicked after the 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFinishReport_Click(object sender, EventArgs e)
         {
             //Hiding the form
