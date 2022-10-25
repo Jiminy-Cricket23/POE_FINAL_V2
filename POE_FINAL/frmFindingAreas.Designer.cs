@@ -70,7 +70,7 @@
             this.pnlHeader.Controls.Add(this.lblHeading);
             this.pnlHeader.Controls.Add(this.btnClose);
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1092, 81);
             this.pnlHeader.TabIndex = 27;
@@ -82,7 +82,7 @@
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnBack.Location = new System.Drawing.Point(997, 0);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(54, 33);
             this.btnBack.TabIndex = 35;
@@ -169,7 +169,7 @@
             this.lvLeft.AllowDrop = true;
             this.lvLeft.HideSelection = false;
             this.lvLeft.Location = new System.Drawing.Point(38, 186);
-            this.lvLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvLeft.Margin = new System.Windows.Forms.Padding(2);
             this.lvLeft.Name = "lvLeft";
             this.lvLeft.OwnerDraw = true;
             this.lvLeft.Size = new System.Drawing.Size(420, 225);
@@ -184,7 +184,7 @@
             this.lvRight.AllowDrop = true;
             this.lvRight.HideSelection = false;
             this.lvRight.Location = new System.Drawing.Point(632, 106);
-            this.lvRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvRight.Margin = new System.Windows.Forms.Padding(2);
             this.lvRight.Name = "lvRight";
             this.lvRight.OwnerDraw = true;
             this.lvRight.Size = new System.Drawing.Size(420, 386);
@@ -206,8 +206,8 @@
             this.pnlResults.Controls.Add(this.lblRanked);
             this.pnlResults.Controls.Add(this.lblGrade);
             this.pnlResults.Controls.Add(this.btnFinishReport);
-            this.pnlResults.Location = new System.Drawing.Point(887, 85);
-            this.pnlResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlResults.Location = new System.Drawing.Point(115, 85);
+            this.pnlResults.Margin = new System.Windows.Forms.Padding(2);
             this.pnlResults.Name = "pnlResults";
             this.pnlResults.Size = new System.Drawing.Size(1092, 520);
             this.pnlResults.TabIndex = 34;
@@ -322,6 +322,7 @@
             this.btnFinishReport.TabIndex = 32;
             this.btnFinishReport.Text = "Done!";
             this.btnFinishReport.UseVisualStyleBackColor = false;
+            this.btnFinishReport.Click += new System.EventHandler(this.btnFinishReport_Click);
             // 
             // btnDone
             // 
@@ -351,7 +352,7 @@
             this.cb1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb1.FormattingEnabled = true;
             this.cb1.Location = new System.Drawing.Point(476, 221);
-            this.cb1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb1.Margin = new System.Windows.Forms.Padding(2);
             this.cb1.Name = "cb1";
             this.cb1.Size = new System.Drawing.Size(138, 36);
             this.cb1.TabIndex = 35;
@@ -363,7 +364,7 @@
             this.cb2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb2.FormattingEnabled = true;
             this.cb2.Location = new System.Drawing.Point(476, 261);
-            this.cb2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb2.Margin = new System.Windows.Forms.Padding(2);
             this.cb2.Name = "cb2";
             this.cb2.Size = new System.Drawing.Size(138, 36);
             this.cb2.TabIndex = 36;
@@ -375,7 +376,7 @@
             this.cb3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb3.FormattingEnabled = true;
             this.cb3.Location = new System.Drawing.Point(476, 301);
-            this.cb3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb3.Margin = new System.Windows.Forms.Padding(2);
             this.cb3.Name = "cb3";
             this.cb3.Size = new System.Drawing.Size(138, 36);
             this.cb3.TabIndex = 37;
@@ -387,7 +388,7 @@
             this.cb4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb4.FormattingEnabled = true;
             this.cb4.Location = new System.Drawing.Point(476, 341);
-            this.cb4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb4.Margin = new System.Windows.Forms.Padding(2);
             this.cb4.Name = "cb4";
             this.cb4.Size = new System.Drawing.Size(138, 36);
             this.cb4.TabIndex = 38;
@@ -409,7 +410,7 @@
             this.Controls.Add(this.btnStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmFindingAreas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Finding Areas";

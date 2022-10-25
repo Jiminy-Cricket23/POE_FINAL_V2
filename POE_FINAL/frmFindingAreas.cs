@@ -100,8 +100,9 @@ namespace POE_FINAL
         private string[] arrChosen = new string[4];
         //List<string> lsChosen = new List<string>();
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
-        private int len = 1300; //  this is for the animation of the results pannel
+        private int iLen = 1300; //  this is for the animation of the results pannel
         private Dictionary<string, string> dicRight = new Dictionary<string, string>();
+        private int iAttempts = 1; // how many times they attempted they tested their answer
 
         public frmFindingAreas()
         {
@@ -185,7 +186,7 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void frmFindingAreas_Load(object sender, EventArgs e)
         {
-            pnlResults.Location = new Point(len, 80);
+            pnlResults.Location = new Point(iLen, 80);
             lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
             lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
         }
@@ -236,6 +237,7 @@ namespace POE_FINAL
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            sw.Stop();
             // This array gets all the values of the selected values
             string[] arrSelected = new string[4];
             arrSelected[0] = cb1.Text.Trim();
@@ -250,6 +252,9 @@ namespace POE_FINAL
                 {
                     ms.ErrorMessage("Selection "+ (i+1).ToString() + " is wrong!");
                     bFlag = false;
+                    if (i == 3)
+                        iAttempts++;
+                    continue; // saves a small amount of processing time
                 }
 
                 if (bFlag && i == 3)
@@ -261,12 +266,11 @@ namespace POE_FINAL
                     cb2.Items.Clear();
                     cb3.Items.Clear();
                     cb4.Items.Clear();
-
+                    GenerateReport(sw.ElapsedMilliseconds);
                     btnDone.Enabled = false;
                     btnStart.Enabled = true;
                     tAnimation.Start();
-                }
-                    
+                }                    
             }
         }
 
@@ -400,14 +404,88 @@ namespace POE_FINAL
         private void tAnimation_Tick(object sender, EventArgs e)
         {
             //int len = starting point
-            if (len != 0)
+            if (iLen != 0)
             {
-                len -= 10;
-                pnlResults.Location = new Point(len, 80);
+                iLen -= 10;
+                pnlResults.Location = new Point(iLen, 80);
                 pnlResults.Update();
             }
             else
                 tAnimation.Stop();
+        }
+
+        /// <summary>
+        /// This method generates the report of how long they took and then saves their points to their total, this game is harder and thus has more points
+        /// </summary>
+        /// <param name="elapsedMilliseconds"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void GenerateReport(double elapsedMilliseconds)
+        {
+            int seconds = (int)Math.Round(elapsedMilliseconds / 1000);
+            int pointsEarnt = 80 - seconds - (iAttempts * 2);
+            //MessageBox.Show(seconds.ToString() + " seconds " + pointsEarnt.ToString() + "Points");
+            string rank;
+
+            switch (seconds)
+            {
+                case int i when i < 30:
+                    rank = "S+";
+                    break;
+                case int i when i >= 30 && i < 35:
+                    rank = "S";
+                    break;
+                case int i when i >= 35 && i < 40:
+                    rank = "A+";
+                    break;
+                case int i when i >= 40 && i < 45:
+                    rank = "A";
+                    break;
+                case int i when i >= 45 && i < 50: 
+                    rank = "B+";
+                    break;
+                case int i when i >= 50 && i < 55: 
+                    rank = "B";
+                    break;
+                case int i when i >= 55 && i < 60: 
+                    rank = "C+";
+                    break;
+                case int i when i >= 60 && i < 65: 
+                    rank = "C";
+                    break;
+                case int i when i >= 65 && i < 70: 
+                    rank = "D+";
+                    break;
+                case int i when i >= 70 && i < 75: 
+                    rank = "D";
+                    break;
+                case int i when i >= 75 && i < 80: 
+                    rank = "E+";
+                    break;
+                case int i when i >= 80 && i < 85: 
+                    rank = "E";
+                    break;
+                default:
+                    rank = "F";
+                    break;
+            }
+
+            // Displaying on the labels
+            lblGrade.Text = rank;
+            lblTimeTaken.Text = seconds.ToString() + " Seconds";
+            lblAttempts.Text = iAttempts.ToString() + " Attempts";
+            lblPointsEarnt.Text = pointsEarnt.ToString() + " Points";
+
+            Program.acheivedPoints += pointsEarnt;
+            //SetLabels(); this looks tacky here
+        }
+
+        private void btnFinishReport_Click(object sender, EventArgs e)
+        {
+            //Hiding the form
+            frmHome frm = new frmHome();
+            Program.acheivedAttempts++;
+            frm.Show();
+            this.Hide();
         }
     }
 }
