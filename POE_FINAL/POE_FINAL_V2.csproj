@@ -68,11 +68,18 @@
   <ItemGroup>
     <Compile Include="Classes\Task 1 Classes\Booked.cs" />
     <Compile Include="Classes\Task 1 Classes\Messages.cs" />
+    <Compile Include="Classes\TreeNode.cs" />
     <Compile Include="frmFindingAreas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFindingAreas.Designer.cs">
       <DependentUpon>frmFindingAreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindingCallNumbers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindingCallNumbers.Designer.cs">
+      <DependentUpon>frmFindingCallNumbers.cs</DependentUpon>
     </Compile>
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
@@ -90,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmFindingAreas.resx">
       <DependentUpon>frmFindingAreas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindingCallNumbers.resx">
+      <DependentUpon>frmFindingCallNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
@@ -123,6 +133,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Main Logo.ico" />
+    <Content Include="Resources\DDC.txt" />
     <None Include="Resources\Rearranging Books.png" />
     <None Include="Resources\Quiz Logo.png" />
     <None Include="Resources\Main Logo.png" />

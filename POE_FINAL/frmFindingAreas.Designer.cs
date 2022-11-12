@@ -206,7 +206,7 @@
             this.pnlResults.Controls.Add(this.lblRanked);
             this.pnlResults.Controls.Add(this.lblGrade);
             this.pnlResults.Controls.Add(this.btnFinishReport);
-            this.pnlResults.Location = new System.Drawing.Point(115, 85);
+            this.pnlResults.Location = new System.Drawing.Point(800, 85);
             this.pnlResults.Margin = new System.Windows.Forms.Padding(2);
             this.pnlResults.Name = "pnlResults";
             this.pnlResults.Size = new System.Drawing.Size(1092, 520);

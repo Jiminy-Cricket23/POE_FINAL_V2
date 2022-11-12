@@ -58,13 +58,16 @@ namespace POE_FINAL
         }
 
         /// <summary>
-        /// Goes to the call numbers game (Still under development)
+        /// Goes to the call numbers game 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnCallNums_Click(object sender, EventArgs e)
         {
-            ms.ErrorMessage("Game Coming Soon");
+            //ms.ErrorMessage("Game Coming Soon");
+            frmFindingCallNumbers frm = new frmFindingCallNumbers();
+            frm.Show();
+            this.Hide();
         }
 
         /// <summary>
