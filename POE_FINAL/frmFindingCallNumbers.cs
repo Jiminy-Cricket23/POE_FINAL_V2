@@ -15,15 +15,32 @@ namespace POE_FINAL
 {
     public partial class frmFindingCallNumbers : Form
     {
-        private int iLen = 1300; //  this is for the animation of the results pannel
+        // This is for the animation of the results pannel
+        private int iLen = 1300; 
         private int iLvl1 = 600;
         private int iLvl2 = 600;
         private int iLvl3 = 600;
+        // Objects that are used
         private Messages ms = new Messages();
+        private Random rnd = new Random();
+        // Tree Variables
         private TreeNode<string> dewey = new TreeNode<string>("dewey");
         private List<TreeNode<string>> lvl1 = new List<TreeNode<string>>();
         private List<TreeNode<string>> lvl2 = new List<TreeNode<string>>();
         private List<TreeNode<string>> lvl3 = new List<TreeNode<string>>();
+        // Array for the unassigned numbers
+        private int[] arrUnassigned = {7, 8, 9, 13, 29,
+            40, 41, 42, 43, 44, 45, 46, 47, 48,
+            49, 104, 112, 125, 132, 134, 136, 151, 157,
+            159, 163, 164, 216, 217, 219, 237, 244, 245,
+            256, 257, 258, 288, 291, 298, 308, 309, 311,
+            312, 313, 329, 376, 377, 396, 397, 416, 424,
+            426, 434, 436, 444, 446, 454, 456, 464, 466,
+            474, 476, 484, 486, 504, 517, 524, 544, 545,
+            574, 589, 619, 626, 654, 655, 656, 689, 699,
+            744, 756, 762, 768, 777, 789, 804, 819, 921,
+            922, 923, 924, 925, 926, 927, 928, 991, 992};
+
         public frmFindingCallNumbers()
         {
             InitializeComponent();
@@ -85,7 +102,7 @@ namespace POE_FINAL
             string sPath = RunningPath.Substring(0, RunningPath.LastIndexOf("bin")) + "Resources\\DDC.txt";
             string sLine;
             int i = 0; // this is needed due to missing areas 
-
+            /*
             try
             {
                 StreamReader sr = new StreamReader(sPath);
@@ -127,7 +144,7 @@ namespace POE_FINAL
             {
                 string indent = CreateIndent(node.Level);
                 redOutput.Text += "\n"+indent + (node.Data ?? "null");
-            }
+            } */
         }
 
         private static String CreateIndent(int depth)
@@ -205,8 +222,29 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            tLevel1.Start();
+            //tLevel1.Start();
             
+                int iGen = 0;
+                bool bFlag = true;
+
+                while (bFlag)
+                {
+                    iGen = rnd.Next(999);
+                    if (arrUnassigned.Contains(iGen))
+                        continue;
+                    bFlag = false;
+                }
+
+                string sGen;
+                if (iGen < 10)
+                    sGen = "00" + iGen; 
+                else if (iGen < 100)
+                    sGen = "0" + iGen;
+                else
+                    sGen = iGen.ToString();
+
+                redOutput.Text += "\n"+sGen;
+   
         }
 
         private void btnOption1_Click(object sender, EventArgs e)
