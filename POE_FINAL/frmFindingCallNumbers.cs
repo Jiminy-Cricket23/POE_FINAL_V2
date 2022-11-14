@@ -100,9 +100,8 @@ namespace POE_FINAL
             // using info from: https://stackoverflow.com/questions/27181774/get-resources-folder-path-c-sharp
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
             string sPath = RunningPath.Substring(0, RunningPath.LastIndexOf("bin")) + "Resources\\DDC.txt";
-            string sLine;
-            int i = 0; // this is needed due to missing areas 
-            /*
+            string sLine; 
+            
             try
             {
                 StreamReader sr = new StreamReader(sPath);
@@ -120,14 +119,13 @@ namespace POE_FINAL
                         int iNum = int.Parse(sLine.Substring(1,1));
                         //MessageBox.Show(iNum.ToString());
                         lvl2.Add(lvl1[iNum].AddChild(sLine.Substring(1, sLine.Length-1)));
-                        i++;
                         //MessageBox.Show("Level 2 added " + sLine);
                     }
                     else
                     {
                         //int iNum = int.Parse(sLine.Substring(1,2));
                         //MessageBox.Show(iNum.ToString());
-                        lvl3.Add(lvl2[i-1].AddChild(sLine.Substring(1, sLine.Length-1)));
+                        lvl3.Add(lvl2[lvl2.Count- 1].AddChild(sLine.Substring(1, sLine.Length-1)));
                         //MessageBox.Show("Level 3 added " + sLine);
                     }
                     //MessageBox.Show(sLine);
@@ -144,7 +142,7 @@ namespace POE_FINAL
             {
                 string indent = CreateIndent(node.Level);
                 redOutput.Text += "\n"+indent + (node.Data ?? "null");
-            } */
+            } 
         }
 
         private static String CreateIndent(int depth)
