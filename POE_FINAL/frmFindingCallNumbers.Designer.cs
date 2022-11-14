@@ -389,7 +389,7 @@
             this.pnlLevel2.Controls.Add(this.btnL2Option3);
             this.pnlLevel2.Controls.Add(this.btnL2Option2);
             this.pnlLevel2.Controls.Add(this.btnL2Option1);
-            this.pnlLevel2.Location = new System.Drawing.Point(9, 320);
+            this.pnlLevel2.Location = new System.Drawing.Point(0, 320);
             this.pnlLevel2.Name = "pnlLevel2";
             this.pnlLevel2.Size = new System.Drawing.Size(1092, 518);
             this.pnlLevel2.TabIndex = 37;
@@ -398,7 +398,7 @@
             // 
             this.btnL2Option4.BackColor = System.Drawing.Color.Orange;
             this.btnL2Option4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL2Option4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL2Option4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL2Option4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL2Option4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL2Option4.Location = new System.Drawing.Point(654, 318);
@@ -412,7 +412,7 @@
             // 
             this.btnL2Option3.BackColor = System.Drawing.Color.Orange;
             this.btnL2Option3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL2Option3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL2Option3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL2Option3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL2Option3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL2Option3.Location = new System.Drawing.Point(182, 318);
@@ -426,7 +426,7 @@
             // 
             this.btnL2Option2.BackColor = System.Drawing.Color.Orange;
             this.btnL2Option2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL2Option2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL2Option2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL2Option2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL2Option2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL2Option2.Location = new System.Drawing.Point(654, 136);
@@ -440,7 +440,7 @@
             // 
             this.btnL2Option1.BackColor = System.Drawing.Color.Orange;
             this.btnL2Option1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL2Option1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL2Option1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL2Option1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL2Option1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL2Option1.Location = new System.Drawing.Point(182, 136);
@@ -458,7 +458,7 @@
             this.pnlLevel3.Controls.Add(this.btnL3Option3);
             this.pnlLevel3.Controls.Add(this.btnL3Option2);
             this.pnlLevel3.Controls.Add(this.btnL3Option1);
-            this.pnlLevel3.Location = new System.Drawing.Point(630, 96);
+            this.pnlLevel3.Location = new System.Drawing.Point(622, 86);
             this.pnlLevel3.Name = "pnlLevel3";
             this.pnlLevel3.Size = new System.Drawing.Size(1092, 518);
             this.pnlLevel3.TabIndex = 38;
@@ -467,7 +467,7 @@
             // 
             this.btnL3Option4.BackColor = System.Drawing.Color.Magenta;
             this.btnL3Option4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL3Option4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL3Option4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL3Option4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL3Option4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL3Option4.Location = new System.Drawing.Point(654, 318);
@@ -481,7 +481,7 @@
             // 
             this.btnL3Option3.BackColor = System.Drawing.Color.Magenta;
             this.btnL3Option3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL3Option3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL3Option3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL3Option3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL3Option3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL3Option3.Location = new System.Drawing.Point(182, 318);
@@ -495,7 +495,7 @@
             // 
             this.btnL3Option2.BackColor = System.Drawing.Color.Magenta;
             this.btnL3Option2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL3Option2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL3Option2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL3Option2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL3Option2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL3Option2.Location = new System.Drawing.Point(654, 136);
@@ -509,7 +509,7 @@
             // 
             this.btnL3Option1.BackColor = System.Drawing.Color.Magenta;
             this.btnL3Option1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL3Option1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL3Option1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnL3Option1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL3Option1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL3Option1.Location = new System.Drawing.Point(182, 136);

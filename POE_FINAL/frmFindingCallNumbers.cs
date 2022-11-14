@@ -304,6 +304,7 @@ namespace POE_FINAL
             {
                 arrSelected[i] = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(arrSelectedlvl1[i].ToString())).ToString(); 
             }
+
             btnOption1.Text += ": " + arrSelected[0];
             btnOption2.Text += ": " + arrSelected[1];
             btnOption3.Text += ": " + arrSelected[2];
