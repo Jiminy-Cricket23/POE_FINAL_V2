@@ -309,7 +309,7 @@
             // 
             this.btnOption4.BackColor = System.Drawing.Color.Cyan;
             this.btnOption4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOption4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOption4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOption4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOption4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnOption4.Location = new System.Drawing.Point(654, 318);
@@ -323,7 +323,7 @@
             // 
             this.btnOption3.BackColor = System.Drawing.Color.Cyan;
             this.btnOption3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOption3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOption3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOption3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOption3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnOption3.Location = new System.Drawing.Point(182, 318);
@@ -337,7 +337,7 @@
             // 
             this.btnOption2.BackColor = System.Drawing.Color.Cyan;
             this.btnOption2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOption2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOption2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOption2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOption2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnOption2.Location = new System.Drawing.Point(654, 136);
@@ -351,7 +351,7 @@
             // 
             this.btnOption1.BackColor = System.Drawing.Color.Cyan;
             this.btnOption1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOption1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOption1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOption1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOption1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnOption1.Location = new System.Drawing.Point(182, 136);
@@ -550,11 +550,11 @@
             this.ClientSize = new System.Drawing.Size(1090, 597);
             this.Controls.Add(this.pnlLevel3);
             this.Controls.Add(this.pnlLevel2);
-            this.Controls.Add(this.pnlLevel1);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.pnlHeader);
-            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.pnlLevel1);
             this.Controls.Add(this.redOutput);
+            this.Controls.Add(this.btnStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFindingCallNumbers";
