@@ -318,6 +318,7 @@
             this.btnOption4.TabIndex = 32;
             this.btnOption4.Text = "Option 4";
             this.btnOption4.UseVisualStyleBackColor = false;
+            this.btnOption4.Click += new System.EventHandler(this.btnOption4_Click);
             // 
             // btnOption3
             // 
@@ -332,6 +333,7 @@
             this.btnOption3.TabIndex = 31;
             this.btnOption3.Text = "Option 3";
             this.btnOption3.UseVisualStyleBackColor = false;
+            this.btnOption3.Click += new System.EventHandler(this.btnOption3_Click);
             // 
             // btnOption2
             // 
@@ -346,6 +348,7 @@
             this.btnOption2.TabIndex = 30;
             this.btnOption2.Text = "Option 2";
             this.btnOption2.UseVisualStyleBackColor = false;
+            this.btnOption2.Click += new System.EventHandler(this.btnOption2_Click);
             // 
             // btnOption1
             // 
@@ -553,8 +556,8 @@
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlLevel1);
-            this.Controls.Add(this.redOutput);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.redOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFindingCallNumbers";

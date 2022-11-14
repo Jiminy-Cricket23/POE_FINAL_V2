@@ -384,6 +384,20 @@ namespace POE_FINAL
 
         private void btnOption1_Click(object sender, EventArgs e)
         {
+            GoToLevel2(btnOption1.Text);
+        }
+
+
+        /// <summary>
+        /// This sets in motion the next level
+        /// </summary>
+        private void GoToLevel2(string sOption)
+        {
+            if (sOption[10] != sGen[0])
+                ms.ErrorMessage("Incorrect Answer!\nThe correct answer is: "+dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(sGen[0]+"00")).ToString());
+            else
+                ms.SuccessMessage("Correct Answer!");
+
             tLevel2.Start();
         }
 
@@ -479,6 +493,21 @@ namespace POE_FINAL
                 SortElements(left, j, iOption);
             if (i < right)
                 SortElements(i, right, iOption);
+        }
+
+        private void btnOption2_Click(object sender, EventArgs e)
+        {
+            GoToLevel2(btnOption2.Text);
+        }
+
+        private void btnOption3_Click(object sender, EventArgs e)
+        {
+            GoToLevel2(btnOption3.Text);
+        }
+
+        private void btnOption4_Click(object sender, EventArgs e)
+        {
+            GoToLevel2(btnOption4.Text);
         }
     }
 }
