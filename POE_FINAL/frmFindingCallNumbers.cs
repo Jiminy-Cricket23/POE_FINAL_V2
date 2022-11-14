@@ -44,6 +44,8 @@ namespace POE_FINAL
         //Variables for the game
         private string sGen;
         private int[] arrSelectedlvl1 = new int[4];
+        private int[] arrSelectedlvl2 = new int[4];
+        private int[] arrSelectedlvl3 = new int[4];
 
         public frmFindingCallNumbers()
         {
@@ -241,11 +243,10 @@ namespace POE_FINAL
             MessageBox.Show(sGen);
 
             AssignLevel1Buttons();
-            //AssignLevel2Buttons();
-            //AssignLevel3Buttons();
+            tLevel1.Start(); // this can hide a delay
 
-            tLevel1.Start();
-
+            AssignLevel2Buttons();
+            AssignLevel3Buttons();
         }
 
         /// <summary>
@@ -263,18 +264,88 @@ namespace POE_FINAL
                 return iGen.ToString();
         }
 
+        /// <summary>
+        /// Assigns the last level's buttons
+        /// </summary>
         private void AssignLevel3Buttons()
         {
-            throw new NotImplementedException();
-        }
+            arrSelectedlvl3[0] = int.Parse(sGen);
 
-        private void AssignLevel2Buttons()
-        {
-            throw new NotImplementedException();
+            //Getting the 3 other random numbers
+            for (int i = 1; i < 4; i++)
+            {
+                bool bFlag = true;
+                int iGen = 0;
+                while (bFlag)
+                {
+                    iGen = int.Parse(sGen.Substring(0, 2) + rnd.Next(10));
+                    if (arrSelectedlvl3.Contains(iGen))
+                        continue;
+                    if (arrUnassigned.Contains(iGen))
+                        continue;
+                    arrSelectedlvl3[i] = iGen;
+                    bFlag = false;
+                }
+            }
+
+            //Sorting the array
+            SortElements(0, arrSelectedlvl3.Length - 1, 3);
+
+            //Finding the different lvl3 call numbers
+            string[] arrSelected = new string[arrSelectedlvl3.Length];
+            for (int i = 0; i < arrSelectedlvl3.Length; i++)
+            {
+                arrSelected[i] = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(arrSelectedlvl3[i].ToString())).ToString();
+            }
+
+            btnL3Option1.Text += ": " + arrSelected[0];
+            btnL3Option2.Text += ": " + arrSelected[1];
+            btnL3Option3.Text += ": " + arrSelected[2];
+            btnL3Option4.Text += ": " + arrSelected[3];
         }
 
         /// <summary>
-        /// This assigns the first level buttons
+        /// Assigns the second level's buttons
+        /// </summary>
+        private void AssignLevel2Buttons()
+        {
+            arrSelectedlvl2[0] = int.Parse(sGen.Substring(0,2)) * 10;
+
+            //Getting the 3 other random numbers
+            for (int i = 1; i < 4; i++)
+            {
+                bool bFlag = true;
+                int iGen = 0;
+                while (bFlag)
+                {
+                    iGen = int.Parse(sGen[0].ToString() + rnd.Next(10)) * 10;
+                    if (arrSelectedlvl2.Contains(iGen))
+                        continue;
+                    if (arrUnassigned.Contains(iGen))
+                        continue;
+                    arrSelectedlvl2[i] = iGen;
+                    bFlag = false;
+                }
+            }
+
+            //Sorting the array
+            SortElements(0, arrSelectedlvl2.Length - 1, 2);
+
+            //Finding the different lvl2 call numbers
+            string[] arrSelected = new string[arrSelectedlvl2.Length];
+            for (int i = 0; i < arrSelectedlvl2.Length; i++)
+            {
+                arrSelected[i] = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(arrSelectedlvl2[i].ToString())).ToString();
+            }
+
+            btnL2Option1.Text += ": " + arrSelected[0];
+            btnL2Option2.Text += ": " + arrSelected[1];
+            btnL2Option3.Text += ": " + arrSelected[2];
+            btnL2Option4.Text += ": " + arrSelected[3];
+        }
+
+        /// <summary>
+        /// This assigns the first level's buttons
         /// </summary>
         private void AssignLevel1Buttons()
         {
@@ -296,7 +367,7 @@ namespace POE_FINAL
             }
 
             //Sorting the array
-            Sortlvl1(0, arrSelectedlvl1.Length - 1);
+            SortElements(0, arrSelectedlvl1.Length - 1, 1);
 
             //Finding the different lvl1 call numbers
             string[] arrSelected = new string[arrSelectedlvl1.Length];
@@ -309,9 +380,6 @@ namespace POE_FINAL
             btnOption2.Text += ": " + arrSelected[1];
             btnOption3.Text += ": " + arrSelected[2];
             btnOption4.Text += ": " + arrSelected[3];
-
-            
-
         }
 
         private void btnOption1_Click(object sender, EventArgs e)
@@ -330,38 +398,87 @@ namespace POE_FINAL
         }
 
         /// <summary>
-        /// This Method uses a quick sort to sort the books PURELY BY THEIR NUMBERS
+        /// Sorting method previously used in the first game, sorts the 3 different arrays
         /// Using code from: https://code-maze.com/csharp-quicksort-algorithm/
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
-        public void Sortlvl1(int left, int right)
+        public void SortElements(int left, int right, int iOption)
         {
+
             var i = left;
             var j = right;
-            var pivot = arrSelectedlvl1[left];
-            while (i <= j)
+            if (iOption == 1)
             {
-                while (arrSelectedlvl1[i] < pivot)
-                    i++;
-
-                while (arrSelectedlvl1[j] > pivot)
-                    j--;
-
-                if (i <= j)
+                var pivot = arrSelectedlvl1[left];
+                while (i <= j)
                 {
-                    var temp = arrSelectedlvl1[i];
-                    arrSelectedlvl1[i] = arrSelectedlvl1[j];
-                    arrSelectedlvl1[j] = temp;
-                    i++;
-                    j--;
+                    while (arrSelectedlvl1[i] < pivot)
+                        i++;
+
+                    while (arrSelectedlvl1[j] > pivot)
+                        j--;
+
+                    if (i <= j)
+                    {
+                        var temp = arrSelectedlvl1[i];
+                        arrSelectedlvl1[i] = arrSelectedlvl1[j];
+                        arrSelectedlvl1[j] = temp;
+                        i++;
+                        j--;
+                    }
                 }
             }
 
+            if (iOption == 2)
+            {
+                var pivot = arrSelectedlvl2[left];
+                while (i <= j)
+                {
+                    while (arrSelectedlvl2[i] < pivot)
+                        i++;
+
+                    while (arrSelectedlvl2[j] > pivot)
+                        j--;
+
+                    if (i <= j)
+                    {
+                        var temp = arrSelectedlvl2[i];
+                        arrSelectedlvl2[i] = arrSelectedlvl2[j];
+                        arrSelectedlvl2[j] = temp;
+                        i++;
+                        j--;
+                    }
+                }
+            }
+
+            if (iOption == 3)
+            {
+                var pivot = arrSelectedlvl3[left];
+                while (i <= j)
+                {
+                    while (arrSelectedlvl3[i] < pivot)
+                        i++;
+
+                    while (arrSelectedlvl3[j] > pivot)
+                        j--;
+
+                    if (i <= j)
+                    {
+                        var temp = arrSelectedlvl3[i];
+                        arrSelectedlvl3[i] = arrSelectedlvl3[j];
+                        arrSelectedlvl3[j] = temp;
+                        i++;
+                        j--;
+                    }
+                }
+            }
+
+
             if (left < j)
-                Sortlvl1(left, j);
+                SortElements(left, j, iOption);
             if (i < right)
-                Sortlvl1(i, right);
+                SortElements(i, right, iOption);
         }
     }
 }
