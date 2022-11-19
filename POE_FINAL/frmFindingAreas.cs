@@ -495,7 +495,7 @@ namespace POE_FINAL
         }
 
         /// <summary>
-        /// This button is clicked after the 
+        /// This button is clicked after the game is done
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
