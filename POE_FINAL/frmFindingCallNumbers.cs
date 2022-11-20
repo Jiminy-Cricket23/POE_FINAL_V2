@@ -72,7 +72,10 @@ namespace POE_FINAL
                 pnlResults.Update();
             }
             else
+            {
                 tAnimation.Stop();
+                tFadeOut.Start();
+            }
         }
 
         /// <summary>
@@ -130,6 +133,25 @@ namespace POE_FINAL
                 tLevel3.Stop();
         }
 
+        /// <summary>
+        /// Fading out the Label animation
+        /// using information from: https://stackoverflow.com/questions/5470967/creating-a-fade-out-label
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tFadeOut_Tick(object sender, EventArgs e)
+        {
+            int fadingSpeed = 3;
+            lblChosen.ForeColor = Color.FromArgb(0, lblChosen.ForeColor.G + fadingSpeed, lblChosen.ForeColor.B + fadingSpeed);
+            lblChosen.BackColor = Color.FromArgb(lblChosen.BackColor.R - fadingSpeed, 255, 255);
+            if ((lblChosen.ForeColor.G >= Color.Cyan.G) && (lblChosen.BackColor.R >= Color.Cyan.R))
+            {
+                tFadeOut.Stop();
+                lblChosen.ForeColor = this.BackColor;
+                lblChosen.Visible = false;
+            }
+        }
+
         //Form Methods--------------------------------------------------------------------------------------------------
         /// <summary>
         /// As soon as the page loads everything resets
@@ -181,6 +203,9 @@ namespace POE_FINAL
                     sLine = sr.ReadLine();
                 }
                 sr.Close();
+                lblChosen.ForeColor = Color.Black;
+                lblChosen.BackColor= Color.White;
+                lblChosen.Text = "";
             }
             catch (Exception ex)
             {
@@ -239,6 +264,7 @@ namespace POE_FINAL
         private void btnStart_Click(object sender, EventArgs e)
         {
             //tLevel1.Start();
+            //tFadeOut.Start();
             
                 int iGen = 0;
                 bool bFlag = true;
@@ -253,6 +279,7 @@ namespace POE_FINAL
 
             sGen = GenerateCallNumber(iGen);
             MessageBox.Show(sGen);
+            lblChosen.Text = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(sGen)).ToString().Substring(3);
 
             AssignLevel1Buttons();
             tLevel1.Start(); // this can hide a delay
@@ -277,7 +304,6 @@ namespace POE_FINAL
             else
                 return iGen.ToString();
         }
-
 
         /// <summary>
         /// This assigns the first level's buttons
