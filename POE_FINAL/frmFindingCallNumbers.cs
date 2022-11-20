@@ -55,6 +55,7 @@ namespace POE_FINAL
         {
             InitializeComponent();
         }
+
         //Animation Methods---------------------------------------------------------------------------------------------
         /// <summary>
         /// This is for the final Results page animation
@@ -193,6 +194,11 @@ namespace POE_FINAL
             } */
         }
 
+        /// <summary>
+        /// Creates an indent for displaying (Not Used in final product)
+        /// </summary>
+        /// <param name="depth"></param>
+        /// <returns></returns>
         private static String CreateIndent(int depth)
         {
             StringBuilder sb = new StringBuilder();
@@ -402,56 +408,111 @@ namespace POE_FINAL
             GoToLevel2(btnOption1.Text);
         }
 
+        /// <summary>
+        /// The 2nd option of Level 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOption2_Click(object sender, EventArgs e)
         {
             GoToLevel2(btnOption2.Text);
         }
 
+        /// <summary>
+        /// The 3rd option of Level 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOption3_Click(object sender, EventArgs e)
         {
             GoToLevel2(btnOption3.Text);
         }
 
+        /// <summary>
+        /// The 4th option of Level 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOption4_Click(object sender, EventArgs e)
         {
             GoToLevel2(btnOption4.Text);
         }
 
+        /// <summary>
+        /// The 1st option of Level 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL2Option1_Click(object sender, EventArgs e)
         {
             GoToLevel3(btnL2Option1.Text);
         }
 
+        /// <summary>
+        /// The 2nd option of Level 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL2Option2_Click(object sender, EventArgs e)
         {
             GoToLevel3(btnL2Option2.Text);
         }
 
+        /// <summary>
+        /// The 3rd option of Level 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL2Option3_Click(object sender, EventArgs e)
         {
             GoToLevel3(btnL2Option3.Text);
         }
 
+        /// <summary>
+        /// The 4th option of Level 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL2Option4_Click(object sender, EventArgs e)
         {
             GoToLevel3(btnL2Option4.Text);
         }
 
+        /// <summary>
+        /// The 1st option of Level 3
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL3Option1_Click(object sender, EventArgs e)
         {
             FinishGame(btnL3Option1.Text);
         }
 
+        /// <summary>
+        /// The 2nd option of Level 3
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL3Option2_Click(object sender, EventArgs e)
         {
             FinishGame(btnL3Option2.Text);
         }
 
+        /// <summary>
+        /// The 3rd option of Level 3
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL3Option3_Click(object sender, EventArgs e)
         {
             FinishGame(btnL3Option3.Text);
         }
 
+        /// <summary>
+        /// The 4th option of Level 3
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnL3Option4_Click(object sender, EventArgs e)
         {
             FinishGame(btnL3Option4.Text);
@@ -512,7 +573,6 @@ namespace POE_FINAL
             GenerateReport(sw.ElapsedMilliseconds);
             tAnimation.Start();
         }
-
 
         //Other Methods-------------------------------------------------------------------------------------------------
         /// <summary>
@@ -673,6 +733,11 @@ namespace POE_FINAL
             //SetLabels(); this looks tacky here
         }
 
+        /// <summary>
+        /// This is the final button to finish the report
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFinishReport_Click(object sender, EventArgs e)
         {
             //Hiding the form
@@ -681,7 +746,6 @@ namespace POE_FINAL
             frm.Show();
             this.Hide();
         }
-
         //END OF PROGRAM------------------------------------------------------------------------------------------------
     }
 }
