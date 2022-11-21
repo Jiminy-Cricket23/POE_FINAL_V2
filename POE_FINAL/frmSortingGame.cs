@@ -19,12 +19,12 @@ namespace POE_FINAL
 {
     public partial class frmSortingGame : Form
     {
-
         public frmSortingGame()
         {
             InitializeComponent();
         }
 
+        //Global Variables----------------------------------------------------------------------------------------------
         /// <summary>
         /// The structure that is used to store the different values
         /// </summary>
@@ -43,6 +43,26 @@ namespace POE_FINAL
         private int len = 1100; //  this is for the animation of the results pannel
         private int Attempts = 1; // this is used to keep track of attempts on a single one
 
+        //Animation Methods---------------------------------------------------------------------------------------------
+        /// <summary>
+        /// This creates the animation of the pannel sliding accross the screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tAnimation_Tick(object sender, EventArgs e)
+        {
+            //int len = starting point
+            if (len != 0)
+            {
+                len -= 10;
+                pnlResults.Location = new Point(len, 80);
+                pnlResults.Update();
+            }
+            else
+                tAnimation.Stop();
+        }
+
+        //Form Methods--------------------------------------------------------------------------------------------------
         /// <summary>
         /// This starts the game and sets everything into motion
         /// </summary>
@@ -67,65 +87,7 @@ namespace POE_FINAL
             lvBooks.Alignment = ListViewAlignment.Top;
             lvBooks.TileSize = new System.Drawing.Size(220, 30);
             btnDone.Enabled = true;
-            sw.Start(); 
-        }
-
-        /// <summary>
-        /// This Method uses a quick sort to sort the books PURELY BY THEIR NUMBERS
-        /// Using code from: https://code-maze.com/csharp-quicksort-algorithm/
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        public void SortByNumbers(int left, int right)
-        {
-            var i = left;
-            var j = right;
-            var pivot = lBooks[left].ReferenceNumber;
-            while (i <= j)
-            {
-                while (lBooks[i].ReferenceNumber < pivot)
-                    i++;
-
-                while (lBooks[j].ReferenceNumber > pivot)
-                    j--;
-
-                if (i <= j)
-                {
-                    var temp = lBooks[i];
-                    lBooks[i] = lBooks[j];
-                    lBooks[j] = temp;
-                    i++;
-                    j--;
-                }
-            }
-
-            if (left < j)
-                SortByNumbers(left, j);
-            if (i < right)
-                SortByNumbers(i, right);
-        }
-
-        /// <summary>
-        /// This draws the blocks of the items
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lvBooks_DrawItem(object sender, DrawListViewItemEventArgs e)
-        {
-            try
-            {
-                e.Graphics.FillRectangle(Brushes.Lime, e.Bounds);
-                e.Graphics.DrawRectangle(Pens.Black, e.Bounds);
-
-                //Segoe UI, 21.75pt, style=BoldbtnStart.Font
-                Font ftItem = new Font("Segoe UI", 15);
-                TextRenderer.DrawText(e.Graphics, e.Item.Text, ftItem, e.Bounds, Color.Black, Color.Empty, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-            }
-            catch (Exception ex)
-            {
-                ms.ErrorMessage(ex.ToString());
-            }
-
+            sw.Start();
         }
 
         /// <summary>
@@ -147,7 +109,7 @@ namespace POE_FINAL
         {
             btnDone.Enabled = false;
 
-            
+
             //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
 
             // The list the user has, one of the structures the other of the unicode
@@ -182,7 +144,7 @@ namespace POE_FINAL
                     //MessageBox.Show(lUserBooks[i].ToString() + " is in the wrong place");
                     bFlag = true;
                     iWrong++;
-                } 
+                }
             }
             if (iWrong == 1 || !bFlag)
             {
@@ -201,77 +163,74 @@ namespace POE_FINAL
             else
             {
                 btnDone.Enabled = true;
-                ms.ErrorMessage("You have put them in wrong order, "+ iWrong + " items are wrong");
+                ms.ErrorMessage("You have put them in wrong order, " + iWrong + " items are wrong");
                 Attempts++;
             }
-                
-                
+
+
         }
 
         /// <summary>
-        /// This method generates the report of how long they took and then saves their points to their total
+        /// When the form loads a few things need to be set as a default
         /// </summary>
-        /// <param name="elapsedMilliseconds"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void GenerateReport(double elapsedMilliseconds)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmSortingGame_Load(object sender, EventArgs e)
         {
-            int seconds = (int)Math.Round(elapsedMilliseconds / 1000);
-            int pointsEarnt = 65 - seconds - (Attempts * 2);
-            //MessageBox.Show(seconds.ToString() + " seconds " + pointsEarnt.ToString() + "Points");
-            string rank;
-            
-            switch(seconds)
-            {
-                case int i when i < 10:
-                    rank = "S+";
-                    break;
-                case int i when i >= 10 && i < 15:
-                    rank = "S";
-                    break;
-                case int i when i >= 15 && i < 20:
-                    rank = "A+";
-                    break;
-                case int i when i >= 20 && i < 25:
-                    rank = "A";
-                    break;
-                case int i when i >= 25 && i < 30: //25
-                    rank = "B+";
-                    break;
-                case int i when i >= 30 && i < 35: //30
-                    rank = "B";
-                    break;
-                case int i when i >= 35 && i < 40: //35
-                    rank = "C+";
-                    break;
-                case int i when i >= 40 && i < 45: //40
-                    rank = "C";
-                    break;
-                case int i when i >= 45 && i < 50: //45
-                    rank = "D+";
-                    break;
-                case int i when i >= 50 && i < 55: //50
-                    rank = "D";
-                    break;
-                case int i when i >= 55 && i < 60: //55
-                    rank = "E+";
-                    break;
-                case int i when i >= 60 && i < 65:// 60
-                    rank = "E";
-                    break;
-                default:
-                    rank = "F";
-                    break;
-            }
-            if (rank == "F")
-                pointsEarnt = 0;
-            // Displaying on the labels
-            lblGrade.Text = rank;
-            lblTimeTaken.Text = seconds.ToString()+" Seconds";
-            lblAttempts.Text = Attempts.ToString()+" Attempts";
-            lblPointsEarnt.Text = pointsEarnt.ToString()+" Points";
+            pnlResults.Location = new Point(len, 80);
+            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
+            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
+        }
 
-            Program.acheivedPoints += pointsEarnt;
-            //SetLabels(); this looks tacky here
+        /// <summary>
+        /// This button is on the pannel after the results have been displayed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFinishReport_Click(object sender, EventArgs e)
+        {
+            //Hiding the form
+            frmHome frm = new frmHome();
+            Program.acheivedAttempts++;
+            frm.Show();
+            this.Hide();
+        }
+
+        /// <summary>
+        /// This button returns to the main home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Program.backBtnClicked = true;
+            frmHome frm = new frmHome();
+            frm.Show();
+            this.Hide();
+        }
+
+        //Add & Move Items Methods--------------------------------------------------------------------------------------
+        /// <summary>
+        /// This draws the blocks of the items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lvBooks_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            try
+            {
+                e.Graphics.FillRectangle(Brushes.Lime, e.Bounds);
+                e.Graphics.DrawRectangle(Pens.Black, e.Bounds);
+
+                //Segoe UI, 21.75pt, style=BoldbtnStart.Font
+                Font ftItem = new Font("Segoe UI", 15);
+                TextRenderer.DrawText(e.Graphics, e.Item.Text, ftItem, e.Bounds, Color.Black, Color.Empty, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            }
+            catch (Exception ex)
+            {
+                ms.ErrorMessage(ex.ToString());
+            }
+
         }
 
         /// <summary>
@@ -347,64 +306,111 @@ namespace POE_FINAL
             int iPos = 125 + (iSelected * 30);
             pbArrow.Location = new Point(205, iPos);
             lblSelected.Location = new Point(105, iPos);
-           
+
         }
 
+        //Other Methods-------------------------------------------------------------------------------------------------
         /// <summary>
-        /// This creates the animation of the pannel sliding accross the screen
+        /// This Method uses a quick sort to sort the books PURELY BY THEIR NUMBERS
+        /// Using code from: https://code-maze.com/csharp-quicksort-algorithm/
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tAnimation_Tick(object sender, EventArgs e)
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        public void SortByNumbers(int left, int right)
         {
-            //int len = starting point
-            if (len != 0)
+            var i = left;
+            var j = right;
+            var pivot = lBooks[left].ReferenceNumber;
+            while (i <= j)
             {
-                len -= 10;
-                pnlResults.Location = new Point(len, 80);
-                pnlResults.Update();
+                while (lBooks[i].ReferenceNumber < pivot)
+                    i++;
+
+                while (lBooks[j].ReferenceNumber > pivot)
+                    j--;
+
+                if (i <= j)
+                {
+                    var temp = lBooks[i];
+                    lBooks[i] = lBooks[j];
+                    lBooks[j] = temp;
+                    i++;
+                    j--;
+                }
             }
-            else
-                tAnimation.Stop();
+
+            if (left < j)
+                SortByNumbers(left, j);
+            if (i < right)
+                SortByNumbers(i, right);
         }
 
         /// <summary>
-        /// When the form loads a few things need to be set as a default
+        /// This method generates the report of how long they took and then saves their points to their total
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmSortingGame_Load(object sender, EventArgs e)
+        /// <param name="elapsedMilliseconds"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void GenerateReport(double elapsedMilliseconds)
         {
-            pnlResults.Location = new Point(len, 80);
-            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
-            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
+            int seconds = (int)Math.Round(elapsedMilliseconds / 1000);
+            int pointsEarnt = 65 - seconds - (Attempts * 2);
+            //MessageBox.Show(seconds.ToString() + " seconds " + pointsEarnt.ToString() + "Points");
+            string rank;
+            
+            switch(seconds)
+            {
+                case int i when i < 10:
+                    rank = "S+";
+                    break;
+                case int i when i >= 10 && i < 15:
+                    rank = "S";
+                    break;
+                case int i when i >= 15 && i < 20:
+                    rank = "A+";
+                    break;
+                case int i when i >= 20 && i < 25:
+                    rank = "A";
+                    break;
+                case int i when i >= 25 && i < 30: //25
+                    rank = "B+";
+                    break;
+                case int i when i >= 30 && i < 35: //30
+                    rank = "B";
+                    break;
+                case int i when i >= 35 && i < 40: //35
+                    rank = "C+";
+                    break;
+                case int i when i >= 40 && i < 45: //40
+                    rank = "C";
+                    break;
+                case int i when i >= 45 && i < 50: //45
+                    rank = "D+";
+                    break;
+                case int i when i >= 50 && i < 55: //50
+                    rank = "D";
+                    break;
+                case int i when i >= 55 && i < 60: //55
+                    rank = "E+";
+                    break;
+                case int i when i >= 60 && i < 65:// 60
+                    rank = "E";
+                    break;
+                default:
+                    rank = "F";
+                    break;
+            }
+            if (rank == "F")
+                pointsEarnt = 0;
+            // Displaying on the labels
+            lblGrade.Text = rank;
+            lblTimeTaken.Text = seconds.ToString()+" Seconds";
+            lblAttempts.Text = Attempts.ToString()+" Attempts";
+            lblPointsEarnt.Text = pointsEarnt.ToString()+" Points";
+
+            Program.acheivedPoints += pointsEarnt;
+            //SetLabels(); this looks tacky here
         }
 
-        /// <summary>
-        /// This button is on the pannel after the results have been displayed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFinishReport_Click(object sender, EventArgs e)
-        {
-            //Hiding the form
-            frmHome frm = new frmHome();
-            Program.acheivedAttempts++;
-            frm.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// This button returns to the main home page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            Program.backBtnClicked = true;
-            frmHome frm = new frmHome();
-            frm.Show();
-            this.Hide();
-        }
+        //END OF PROGRAM------------------------------------------------------------------------------------------------
     }
 }
