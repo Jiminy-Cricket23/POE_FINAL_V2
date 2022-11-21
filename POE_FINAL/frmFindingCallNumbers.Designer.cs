@@ -87,7 +87,7 @@
             this.pnlHeader.Controls.Add(this.lblHeading);
             this.pnlHeader.Controls.Add(this.btnClose);
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1092, 81);
             this.pnlHeader.TabIndex = 28;
@@ -99,7 +99,7 @@
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnBack.Location = new System.Drawing.Point(997, 0);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(54, 33);
             this.btnBack.TabIndex = 35;
@@ -179,7 +179,7 @@
             this.pnlResults.Controls.Add(this.lblGrade);
             this.pnlResults.Controls.Add(this.btnFinishReport);
             this.pnlResults.Location = new System.Drawing.Point(517, 86);
-            this.pnlResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlResults.Margin = new System.Windows.Forms.Padding(2);
             this.pnlResults.Name = "pnlResults";
             this.pnlResults.Size = new System.Drawing.Size(1092, 520);
             this.pnlResults.TabIndex = 35;
@@ -467,7 +467,7 @@
             this.pnlLevel3.Controls.Add(this.btnL3Option3);
             this.pnlLevel3.Controls.Add(this.btnL3Option2);
             this.pnlLevel3.Controls.Add(this.btnL3Option1);
-            this.pnlLevel3.Location = new System.Drawing.Point(299, 188);
+            this.pnlLevel3.Location = new System.Drawing.Point(143, 121);
             this.pnlLevel3.Name = "pnlLevel3";
             this.pnlLevel3.Size = new System.Drawing.Size(1092, 518);
             this.pnlLevel3.TabIndex = 38;
@@ -521,7 +521,7 @@
             // 
             this.btnL3Option1.BackColor = System.Drawing.Color.Magenta;
             this.btnL3Option1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnL3Option1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL3Option1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnL3Option1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnL3Option1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnL3Option1.Location = new System.Drawing.Point(182, 136);
@@ -579,9 +579,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1090, 597);
+            this.Controls.Add(this.pnlLevel3);
             this.Controls.Add(this.lblChosen);
             this.Controls.Add(this.pnlResults);
-            this.Controls.Add(this.pnlLevel3);
             this.Controls.Add(this.pnlLevel2);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlLevel1);
