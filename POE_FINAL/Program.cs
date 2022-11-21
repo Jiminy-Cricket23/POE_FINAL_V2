@@ -14,6 +14,7 @@ namespace POE_FINAL
         public static int goalPoints = 0;
         public static int acheivedAttempts = 0;
         public static int acheivedPoints = 0;
+        public static bool backBtnClicked = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

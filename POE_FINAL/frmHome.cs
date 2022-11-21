@@ -14,14 +14,13 @@ namespace POE_FINAL
 {
     public partial class frmHome : Form
     {
-        
-        private Messages ms = new Messages(); // message object for this form
-
         public frmHome()
         {
             InitializeComponent();
         }
         
+        private Messages ms = new Messages(); // message object for this form
+
         /// <summary>
         /// Shows the sorting game form
         /// </summary>
@@ -77,23 +76,7 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void frmHome_Load(object sender, EventArgs e)
         {
-            // displays the acheived attempts
-            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/"+ Program.goalAttempts.ToString();
-            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/"+ Program.goalPoints.ToString();
-
-            // success
-            if (Program.goalPoints <= Program.acheivedPoints && Program.goalAttempts > Program.acheivedAttempts && Program.goalAttempts != 0 && Program.goalPoints != 0)
-            {
-                ms.SuccessMessage("You have successfully completed your Goal!");
-                ResetPoints();  
-            }
-
-            // have not met goal and resets until the button has been clicked and new values have been entered
-            if (Program.goalAttempts < Program.acheivedAttempts && Program.goalAttempts != 0)
-            {
-                ms.ErrorMessage("You have failed to complete your Goal!");
-                ResetPoints();
-            }
+            SetTopLabels();
 
             // if the goal and attempts have not been set yet they can't get to the games
             if (Program.goalAttempts > 0 && Program.goalPoints > 0)
@@ -118,6 +101,17 @@ namespace POE_FINAL
             btnSortingGame.Enabled = false;
             btnFindArea.Enabled = false;
             btnCallNums.Enabled = false;
+
+            SetTopLabels();
+        }
+
+        /// <summary>
+        /// displays the acheived attempts, acheived points, goal attempts and goal points
+        /// </summary>
+        private void SetTopLabels()
+        {
+            lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
+            lblPointsGoal.Text = Program.acheivedPoints.ToString() + "/" + Program.goalPoints.ToString();
         }
 
         /// <summary>
@@ -186,6 +180,39 @@ namespace POE_FINAL
             lblHeading.Font = fChanger;
             lblPoints.Font = fChanger;
             lblPointsGoal.Font = fChanger;
+        }
+
+        /// <summary>
+        /// When the form is show it is checked to see whther goals have been acheived.
+        /// It also ensures that it's not on the first time or when they click back
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmHome_Shown(object sender, EventArgs e)
+        {
+            //this ensures that none of these fire if this is true
+            if ((Program.goalAttempts == 0) && (Program.goalPoints == 0)) return;
+            if (Program.backBtnClicked)
+            {
+                Program.backBtnClicked = false;
+                return;
+            }
+
+            // success
+            if ((Program.goalPoints <= Program.acheivedPoints) && (Program.goalAttempts >= Program.acheivedAttempts))
+            {
+                ms.SuccessMessage("You have successfully completed your Goal!");
+                ResetPoints();
+                return;
+            }
+
+            // have not met goal and resets until the button has been clicked and new values have been entered
+            if ((Program.goalAttempts == Program.acheivedAttempts) && (Program.goalPoints > Program.acheivedPoints))
+            {
+                ms.ErrorMessage("You have failed to complete your Goal!");
+                ResetPoints();
+            }
+            //MessageBox.Show("TEST");
         }
     }
 }

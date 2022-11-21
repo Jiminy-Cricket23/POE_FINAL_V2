@@ -399,6 +399,7 @@ namespace POE_FINAL
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
+            Program.backBtnClicked = true;
             frmHome frm = new frmHome();
             frm.Show();
             this.Hide();
