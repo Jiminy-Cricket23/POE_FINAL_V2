@@ -21,6 +21,7 @@ namespace POE_FINAL
             InitializeComponent();
         }
 
+        //Global Variables----------------------------------------------------------------------------------------------
         private Messages ms = new Messages();
         /* DO NOT NEED 2 DICTIONARIES
         private Dictionary<string, string> dicCategories = new Dictionary<string,string>(){
@@ -101,7 +102,6 @@ namespace POE_FINAL
             {"9003", "The study of what and where important events happened."}
         };
 
-
         private string[] arrChosen = new string[4];
         //List<string> lsChosen = new List<string>();
         private Stopwatch sw = new Stopwatch(); // measures how long it takes
@@ -109,6 +109,26 @@ namespace POE_FINAL
         private Dictionary<string, string> dicRight = new Dictionary<string, string>();
         private int iAttempts = 1; // how many times they attempted they tested their answer
 
+        //Animation Methods---------------------------------------------------------------------------------------------
+        /// <summary>
+        /// This is to animate in the results pannel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tAnimation_Tick(object sender, EventArgs e)
+        {
+            //int len = starting point
+            if (iLen != 0)
+            {
+                iLen -= 10;
+                pnlResults.Location = new Point(iLen, 80);
+                pnlResults.Update();
+            }
+            else
+                tAnimation.Stop();
+        }
+
+        //Form Methods--------------------------------------------------------------------------------------------------
         /// <summary>
         /// The red close button on the top right of the form to close it 
         /// </summary>
@@ -141,7 +161,7 @@ namespace POE_FINAL
         {
             btnStart.Enabled = false;
             Random rnd = new Random();
-            
+
             if (rnd.Next(2) == 0)
                 CallNumbersToDescriptions(rnd);
             else
@@ -170,7 +190,7 @@ namespace POE_FINAL
             cb2.SelectedIndex = 1;
             cb3.SelectedIndex = 2;
             cb4.SelectedIndex = 3;
-            
+
             cb1.Enabled = true;
             cb2.Enabled = true;
             cb3.Enabled = true;
@@ -192,6 +212,66 @@ namespace POE_FINAL
             lblGoalAttempts.Text = Program.acheivedAttempts.ToString() + "/" + Program.goalAttempts.ToString();
         }
 
+        /// <summary>
+        /// This button is clicked after the game is done
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFinishReport_Click(object sender, EventArgs e)
+        {
+            //Hiding the form
+            frmHome frm = new frmHome();
+            Program.acheivedAttempts++;
+            frm.Show();
+            this.Hide();
+        }
+
+        /// <summary>
+        /// Once the user is done it stops the time watch and calls the generate report method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+
+            // This array gets all the values of the selected values
+            string[] arrSelected = new string[4];
+            arrSelected[0] = cb1.Text.Trim();
+            arrSelected[1] = cb2.Text.Trim();
+            arrSelected[2] = cb3.Text.Trim();
+            arrSelected[3] = cb4.Text.Trim();
+
+            bool bFlag = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (!arrChosen[i].Equals(dicRight[arrSelected[i]]))
+                {
+                    ms.ErrorMessage("Selection " + (i + 1).ToString() + " is wrong!");
+                    bFlag = false;
+                    if (i == 3)
+                        iAttempts++;
+                    continue; // saves a small amount of processing time
+                }
+
+                if (bFlag && i == 3)
+                {
+                    sw.Stop();
+                    ms.SuccessMessage("Your selection is correct!");
+                    lvLeft.Items.Clear();
+                    lvRight.Items.Clear();
+                    cb1.Items.Clear();
+                    cb2.Items.Clear();
+                    cb3.Items.Clear();
+                    cb4.Items.Clear();
+                    GenerateReport(sw.ElapsedMilliseconds);
+                    btnDone.Enabled = false;
+                    btnStart.Enabled = true;
+                    tAnimation.Start();
+                }
+            }
+        }
+
+        //Drawing Methods-----------------------------------------------------------------------------------------------
         /// <summary>
         /// Draws the boxes on the left listview
         /// </summary>
@@ -236,50 +316,7 @@ namespace POE_FINAL
             }
         }
 
-        /// <summary>
-        /// Once the user is done it stops the time watch and calls the generate report method
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnDone_Click(object sender, EventArgs e)
-        {
-            
-            // This array gets all the values of the selected values
-            string[] arrSelected = new string[4];
-            arrSelected[0] = cb1.Text.Trim();
-            arrSelected[1] = cb2.Text.Trim();
-            arrSelected[2] = cb3.Text.Trim();
-            arrSelected[3] = cb4.Text.Trim();
-
-            bool bFlag = true;
-            for(int i = 0; i < 4; i++)
-            {
-                if (!arrChosen[i].Equals(dicRight[arrSelected[i]]))
-                {
-                    ms.ErrorMessage("Selection "+ (i+1).ToString() + " is wrong!");
-                    bFlag = false;
-                    if (i == 3)
-                        iAttempts++;
-                    continue; // saves a small amount of processing time
-                }
-
-                if (bFlag && i == 3)
-                {
-                    sw.Stop();
-                    ms.SuccessMessage("Your selection is correct!");
-                    lvLeft.Items.Clear();
-                    lvRight.Items.Clear();
-                    cb1.Items.Clear();
-                    cb2.Items.Clear();
-                    cb3.Items.Clear();
-                    cb4.Items.Clear();
-                    GenerateReport(sw.ElapsedMilliseconds);
-                    btnDone.Enabled = false;
-                    btnStart.Enabled = true;
-                    tAnimation.Start();
-                }                    
-            }
-        }
+        //Other Methods-------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// This allows the call numbers to go to descriptions
@@ -411,25 +448,7 @@ namespace POE_FINAL
                 }
             }            
         }
-
-        /// <summary>
-        /// This is to animate in the results pannel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tAnimation_Tick(object sender, EventArgs e)
-        {
-            //int len = starting point
-            if (iLen != 0)
-            {
-                iLen -= 10;
-                pnlResults.Location = new Point(iLen, 80);
-                pnlResults.Update();
-            }
-            else
-                tAnimation.Stop();
-        }
-
+        
         /// <summary>
         /// This method generates the report of how long they took and then saves their points to their total, this game is harder and thus has more points
         /// </summary>
@@ -496,19 +515,7 @@ namespace POE_FINAL
             Program.acheivedPoints += pointsEarnt;
             //SetLabels(); this looks tacky here
         }
-
-        /// <summary>
-        /// This button is clicked after the game is done
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFinishReport_Click(object sender, EventArgs e)
-        {
-            //Hiding the form
-            frmHome frm = new frmHome();
-            Program.acheivedAttempts++;
-            frm.Show();
-            this.Hide();
-        }
+        
+        //END OF PROGRAM------------------------------------------------------------------------------------------------
     }
 }

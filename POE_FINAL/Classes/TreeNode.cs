@@ -7,22 +7,37 @@ using System.Threading.Tasks;
 
 namespace POE_FINAL.Classes
 {
+    /// <summary>
+    /// Using code from class for the Tree
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     internal class TreeNode<T> : IEnumerable<TreeNode<T>>
     {
         public T Data { get; set; }
         public TreeNode<T> Parent { get; set; }
         public ICollection<TreeNode<T>> Children { get; set; }
+        private ICollection<TreeNode<T>> Elements { get; set; }
+        private ICollection<TreeNode<T>> ElementsIndex { get; set; }
 
+        /// <summary>
+        /// Returns if node is a Root
+        /// </summary>
         public Boolean isRoot
         {
             get { return Parent == null; }
         }
 
+        /// <summary>
+        /// Returns if node is a leaf
+        /// </summary>
         public Boolean isLeaf
         {
             get { return Children.Count == 0; }
         }
 
+        /// <summary>
+        /// Finds the level of the node
+        /// </summary>
         public int Level
         {
             get
@@ -33,6 +48,10 @@ namespace POE_FINAL.Classes
             }
         }
 
+        /// <summary>
+        /// Constructor for treeNode class
+        /// </summary>
+        /// <param name="data"></param>
         public TreeNode(T data)
         {
             this.Data = data;
@@ -45,8 +64,8 @@ namespace POE_FINAL.Classes
         /// <summary>
         /// Generating a node / child
         /// </summary>
+        /// <param name="child"></param>
         /// <returns></returns>
-        /// 
         public TreeNode<T> AddChild(T child)
         {
             TreeNode<T> childNode = new TreeNode<T>(child) { Parent = this };
@@ -56,15 +75,20 @@ namespace POE_FINAL.Classes
             return childNode;
         }
 
+        /// <summary>
+        /// Converts the nodes to string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Data != null ? Data.ToString() : "[DataNull]";
             // if data != null then (?) else :
         }
 
-        private ICollection<TreeNode<T>> Elements { get; set; }
-        private ICollection<TreeNode<T>> ElementsIndex { get; set; }
-
+        /// <summary>
+        /// This method registers the child for a search as soon as it is added
+        /// </summary>
+        /// <param name="node"></param>
         private void RegisterChildForSearch(TreeNode<T> node)
         {
             ElementsIndex.Add(node);
@@ -72,10 +96,20 @@ namespace POE_FINAL.Classes
                 Parent.RegisterChildForSearch(node);
         }
 
+        /// <summary>
+        /// A method that returns a node using a LINQ statement
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public TreeNode<T> FindTreeNode(Func<TreeNode<T>, bool> predicate)
         {
             return this.ElementsIndex.FirstOrDefault(predicate);
         }
+
+        /// <summary>
+        /// Returns a IEnumerator for the tree
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<TreeNode<T>> GetEnumerator()
         {
             yield return this;
@@ -87,6 +121,10 @@ namespace POE_FINAL.Classes
 
         }
 
+        /// <summary>
+        /// Returns the above method
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
