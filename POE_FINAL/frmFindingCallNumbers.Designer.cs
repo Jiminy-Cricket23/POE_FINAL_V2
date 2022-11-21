@@ -579,9 +579,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1090, 597);
+            this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.pnlLevel3);
             this.Controls.Add(this.lblChosen);
-            this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.pnlLevel2);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlLevel1);
