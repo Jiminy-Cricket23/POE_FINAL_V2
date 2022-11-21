@@ -49,7 +49,7 @@ namespace POE_FINAL
             574, 589, 619, 626, 654, 655, 656, 689, 699,
             744, 756, 762, 768, 777, 789, 804, 819, 921,
             922, 923, 924, 925, 926, 927, 928, 991, 992};
-        //Variables for the game
+        // Variables for the game
         private string sGen;
         private int[] arrSelectedlvl1 = new int[4];
         private int[] arrSelectedlvl2 = new int[4];
