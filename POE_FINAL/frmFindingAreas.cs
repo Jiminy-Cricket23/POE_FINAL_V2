@@ -16,6 +16,11 @@ namespace POE_FINAL
 {
     public partial class frmFindingAreas : Form
     {
+        public frmFindingAreas()
+        {
+            InitializeComponent();
+        }
+
         private Messages ms = new Messages();
         /* DO NOT NEED 2 DICTIONARIES
         private Dictionary<string, string> dicCategories = new Dictionary<string,string>(){
@@ -103,11 +108,6 @@ namespace POE_FINAL
         private int iLen = 1300; //  this is for the animation of the results pannel
         private Dictionary<string, string> dicRight = new Dictionary<string, string>();
         private int iAttempts = 1; // how many times they attempted they tested their answer
-
-        public frmFindingAreas()
-        {
-            InitializeComponent();
-        }
 
         /// <summary>
         /// The red close button on the top right of the form to close it 
@@ -484,6 +484,8 @@ namespace POE_FINAL
                     rank = "F";
                     break;
             }
+            if (rank == "F")
+                pointsEarnt = 0;
 
             // Displaying on the labels
             lblGrade.Text = rank;

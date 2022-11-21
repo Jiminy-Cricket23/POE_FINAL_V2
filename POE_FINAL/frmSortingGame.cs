@@ -262,6 +262,8 @@ namespace POE_FINAL
                     rank = "F";
                     break;
             }
+            if (rank == "F")
+                pointsEarnt = 0;
             // Displaying on the labels
             lblGrade.Text = rank;
             lblTimeTaken.Text = seconds.ToString()+" Seconds";
