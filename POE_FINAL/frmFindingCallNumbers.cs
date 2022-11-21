@@ -18,8 +18,14 @@ namespace POE_FINAL
 {
     public partial class frmFindingCallNumbers : Form
     {
+        public frmFindingCallNumbers()
+        {
+            InitializeComponent();
+        }
+
+        //Global Variables----------------------------------------------------------------------------------------------
         // This is for the animation of the results pannel
-        private int iLen = 1300; 
+        private int iLen = 1300;
         private int iLvl1 = 600;
         private int iLvl2 = 600;
         private int iLvl3 = 600;
@@ -50,11 +56,6 @@ namespace POE_FINAL
         private int[] arrSelectedlvl3 = new int[4];
         private int iFaults = 0;
         private Stopwatch sw = new Stopwatch();
-
-        public frmFindingCallNumbers()
-        {
-            InitializeComponent();
-        }
 
         //Animation Methods---------------------------------------------------------------------------------------------
         /// <summary>
@@ -278,8 +279,8 @@ namespace POE_FINAL
                 }
 
             sGen = GenerateCallNumber(iGen);
-            MessageBox.Show(sGen);
-            lblChosen.Text = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(sGen)).ToString().Substring(3);
+            //MessageBox.Show(sGen);
+            lblChosen.Text = dewey.FindTreeNode(node => node.Data != null && node.Data.Contains(sGen)).ToString().Substring(4);
 
             AssignLevel1Buttons();
             tLevel1.Start(); // this can hide a delay
@@ -697,10 +698,7 @@ namespace POE_FINAL
             //MessageBox.Show(seconds.ToString() + " seconds " + pointsEarnt.ToString() + "Points");
             string rank;
             if (iFaults == 3)
-            {
                 rank = "F";
-                pointsEarnt = 0;
-            }
             else
             {
                 switch (seconds)
@@ -746,11 +744,13 @@ namespace POE_FINAL
                         break;
                 }
             }
-           
+            if (rank== "F")
+                pointsEarnt = 0;
+            
             // Displaying on the labels
             lblGrade.Text = rank;
             lblTimeTaken.Text = seconds.ToString() + " Seconds";
-            lblAttempts.Text = iFaults.ToString() + " Attempts";
+            lblAttempts.Text = (iFaults+1).ToString() + " Attempts";
             lblPointsEarnt.Text = pointsEarnt.ToString() + " Points";
 
             tAnimation.Start();
